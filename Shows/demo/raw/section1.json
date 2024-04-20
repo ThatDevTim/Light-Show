@@ -1,8 +1,62 @@
 [
     {
         "type": "set",
-        "range": [0, 100],
-        "color": [[0, 0, 1], [0, 1, 1]],
+        "range": [1, 100],
+        "color": [0, 1, 1],
+        "frame": 1
+    },
+    {
+        "type": "set",
+        "range": [101, 200],
+        "color": [36, 1, 1],
+        "frame": 1
+    },
+    {
+        "type": "set",
+        "range": [201, 300],
+        "color": [72, 1, 1],
+        "frame": 1
+    },
+    {
+        "type": "set",
+        "range": [301, 400],
+        "color": [108, 1, 1],
+        "frame": 1
+    },
+    {
+        "type": "set",
+        "range": [401, 500],
+        "color": [144, 1, 1],
+        "frame": 1
+    },
+    {
+        "type": "set",
+        "range": [501, 600],
+        "color": [180, 1, 1],
+        "frame": 1
+    },
+    {
+        "type": "set",
+        "range": [601, 700],
+        "color": [216, 1, 1],
+        "frame": 1
+    },
+    {
+        "type": "set",
+        "range": [701, 800],
+        "color": [252, 1, 1],
+        "frame": 1
+    },
+    {
+        "type": "set",
+        "range": [801, 900],
+        "color": [288, 1, 1],
+        "frame": 1
+    },
+    {
+        "type": "set",
+        "range": [901, 1000],
+        "color": [324, 1, 1],
         "frame": 1
     }
 ]

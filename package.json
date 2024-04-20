@@ -1,10 +1,11 @@
 {
   "name": "light-show",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Code to create, run, and manage light shows. This code should be deployed as a part of the Superstation.",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "compile": "node compile.js"
   },
   "author": "Tim Whitehead",
   "license": "ISC",
