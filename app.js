@@ -1,6 +1,6 @@
 const express = require("express")
 
-const { loop } = require("./handler.js")
+const { loop, test } = require("./handler.js")
 
 const app = express()    // Start an Express instance
 const port = 3030        // Define port to listen on
@@ -13,4 +13,5 @@ app.get("*", (req, res) => {
 
 app.listen(port, () => {
     console.log(`[+] Listening on port ${port}`)
+    test()
 })
