@@ -8,10 +8,10 @@ let fps = 30
 let initialFrameSend = 15
 let frameSend = 5
 
-async function sendData(node, data) {
+async function sendData(node, method, data) {
     const startTime = Date.now()
 
-    const url = `http://${node}/data`;
+    const url = `http://${node}/${method}`;
     const postData = JSON.stringify(data); // Ensure data is properly stringified JSON
     const options = {
         method: "POST",
@@ -29,8 +29,7 @@ async function sendData(node, data) {
         })
 
         res.on("end", () => {
-            console.log(`[+] Data Sent to ${node} in ${Date.now() - startTime}ms`)
-            // console.log(result)
+            console.log(`[+] Data Sent to ${node}/${method} in ${Date.now() - startTime}ms`)
         })
     })
 
@@ -57,7 +56,8 @@ function test() {
     testData = JSON.parse(testData)
     console.log(testData)
     console.log("[=] Sending Data to 192.168.0.104")
-    sendData("192.168.0.104", testData).then(fetch("http://192.168.0.104/restart"))
+    sendData("192.168.0.104", "frames", testData).then(fetch("http://192.168.0.104/restart"))
+    sendData("192.168.0.104", "settings", {"brightness": 125})
     console.log("[+] Test Complete")
 }
 
