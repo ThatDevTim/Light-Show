@@ -30,14 +30,32 @@ function set(instruction) {
     }
 }
 
-// for (let index = range[0]; index <= range[1]; index++) {
-//     console.log(index)
-// }
-
 function transform(instruction) {
     let range = instruction.range
     let color = instruction.color
     let frame = instruction.frame
+
+    let hChange = color[1][0] - color[0][0]
+    let sChange = color[1][1] - color[0][1]
+    let vChange = color[1][2] - color[0][2]
+
+    let duration = frame[1] - frame[0]
+
+    for (let index = 0; index <= duration; index++) {
+        let setColor = [
+            color[0][0] + ((index / duration) * hChange),
+            color[0][1] + ((index / duration) * sChange),
+            color[0][2] + ((index / duration) * vChange)
+        ]
+        
+        let compiledInstruction = [
+            "range",
+            range,
+            setColor
+        ]
+
+        insertData(frame[0] + index, compiledInstruction)
+    }
 }
 
 function segment(instruction) {
@@ -70,7 +88,6 @@ function segment(instruction) {
     }
 }
 
-// Compile Show
 let filePath = __dirname + `/Shows/${show}`
 let fileList = fs.readdirSync(filePath + "/raw")
 
@@ -88,7 +105,6 @@ fileList.forEach((section) => {
         if (instruction.type == "segment") segment(instruction)
     })
 
-    // After compiling all instruction in a section, write it to a json file with the same name in the /compiled directory
     frameData = JSON.stringify(frameData,)
     fs.writeFileSync(filePath + `/compiled/${section}`, frameData)
 
