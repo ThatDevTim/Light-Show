@@ -1,17 +1,18 @@
 const express = require("express")
+const chalk = require("chalk")
 
 const { loop, test } = require("./handler.js")
 
-const app = express()    // Start an Express instance
-const port = 3030        // Define port to listen on
+const app = express()
+const port = 3030
 
-app.use(express.json())  // Allows for JSON bodies in requests
+app.use(express.json())
 
 app.get("*", (req, res) => {
-    res.send(200)        // Listen for any get request and return status code 200
+    res.send(200)
 })
 
 app.listen(port, () => {
-    console.log(`[+] Listening on port ${port}`)
-    test()
+    console.log(chalk.green(`[+] Listening on port ${port}`))
+    loop()
 })
