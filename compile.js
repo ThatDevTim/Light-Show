@@ -18,16 +18,16 @@ function set(instruction) {
     let frame = instruction.frame
 
     if (Array.isArray(range)) {
-        console.log(`[+] Setting pixels ${range[0]} to ${range[1]} to (${color}) at frame ${frame}`)
-
         let compiledInstruction = [
             "range",
             range,
-            [color[0] / 360, color[1], color[2]]
+            [Math.round((color[0] / 360) * 1000) / 1000, color[1], color[2]]
         ]
 
         insertData(frame, compiledInstruction)
     }
+
+    console.log(`[~] Set pixels ${range[0]} to ${range[1]} to (${color}) at frame ${frame}!`)
 }
 
 function transform(instruction) {
@@ -43,9 +43,9 @@ function transform(instruction) {
 
     for (let index = 0; index <= duration; index++) {
         let setColor = [
-            color[0][0] + ((index / duration) * hChange),
-            color[0][1] + ((index / duration) * sChange),
-            color[0][2] + ((index / duration) * vChange)
+            Math.round(((color[0][0] + ((index / duration) * hChange)) / 360) * 1000) / 1000,
+            Math.round((color[0][1] + ((index / duration) * sChange)) * 1000) / 1000,
+            Math.round((color[0][2] + ((index / duration) * vChange)) * 1000) / 1000
         ]
         
         let compiledInstruction = [
@@ -56,6 +56,8 @@ function transform(instruction) {
 
         insertData(frame[0] + index, compiledInstruction)
     }
+
+    console.log(`[~] Transformed pixels ${range[0]} to ${range[1]} to from (${color[0]}) to (${color[1]}) at between frame ${frame[0]} and ${frame[1]}!`)
 }
 
 function segment(instruction) {
@@ -64,9 +66,7 @@ function segment(instruction) {
     let frame = instruction.frame
 
     let numTotal = (range[1] - range[0]) + 1
-    console.log(numTotal)
     let numPer = instruction.length || numTotal / color.length
-    console.log(numPer)
     let numSegments = numTotal / numPer
 
     for (let index = 0; index < numSegments; index++) {
@@ -76,7 +76,7 @@ function segment(instruction) {
         if (finish > range[1]) finish = range[1]
 
         let setColor = color[index % color.length]
-        setColor = [setColor[0] / 360, setColor[1], setColor[2]]
+        setColor = [Math.round((setColor[0] / 360) * 1000) / 1000, setColor[1], setColor[2]]
 
         let compiledInstruction = [
             "range",
@@ -86,6 +86,8 @@ function segment(instruction) {
 
         insertData(frame, compiledInstruction)
     }
+
+    console.log(`[~] Segmented pixels ${range[0]} to ${range[1]} into ${color.length} colors at frame ${frame}!`)
 }
 
 let filePath = __dirname + `/Shows/${show}`
@@ -110,5 +112,3 @@ fileList.forEach((section) => {
 
     console.log(`[+] Done Compiling ${section}`)
 })
-
-console.log(frameData)
