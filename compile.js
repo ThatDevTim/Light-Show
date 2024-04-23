@@ -1,4 +1,5 @@
 const fs = require("fs")
+const chalk = require("chalk")
 
 let show = "demo"
 
@@ -94,7 +95,7 @@ let filePath = __dirname + `/Shows/${show}`
 let fileList = fs.readdirSync(filePath + "/raw")
 
 fileList.forEach((section) => {
-    console.log(`[=] Compiling ${section}`)
+    console.log(chalk.yellow(`[=] Compiling ${section}`))
 
     let data = fs.readFileSync(filePath + `/raw/${section}`, "utf-8")
     data = JSON.parse(data)
@@ -110,5 +111,5 @@ fileList.forEach((section) => {
     frameData = JSON.stringify(frameData,)
     fs.writeFileSync(filePath + `/compiled/${section}`, frameData)
 
-    console.log(`[+] Done Compiling ${section}`)
+    console.log(chalk.green(`[+] Done Compiling ${section}`))
 })
