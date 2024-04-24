@@ -6,8 +6,8 @@ let playing = true
 let frame = 0
 let fps = 30
 
-let initialFrameSend = 30
-let frameSend = 15
+let initialFrameSend = 300
+let frameSend = 150
 
 let startTime = 0
 let lastFrame = 0
@@ -34,7 +34,8 @@ async function sendData(node, method, data) {
         })
 
         res.on("end", () => {
-            console.log(chalk.green(`[+] Data Sent to ${node}/${method} in ${Date.now() - startTime}ms`))
+            console.log(`[~] Data Sent to ${node}/${method} in ${Date.now() - startTime}ms`)
+            return 200
         })
     })
 
@@ -47,6 +48,11 @@ async function sendData(node, method, data) {
 }
 
 function loop() {
+    sendData("192.168.0.104", "settings", {"brightness": 255})
+
+    let frameData = fs.readFileSync(__dirname + "/Shows/demo/compiled/transform.json", "utf-8")
+    frameData = JSON.parse(frameData)
+
     startTime = Date.now()
     setInterval(() => {
         if (!playing) return
@@ -59,24 +65,35 @@ function loop() {
 
         lastFrame = newFrame
         frame = newFrame
-        if (frame % frameSend != 0) return
-
-        // Sen Frames
+        if ((frame - 1) % frameSend != 0) return
 
         lastRender = now
+
+        let toSend = {}
+
+        for (let index = frame; index < frame + frameSend; index++) {
+            if(frameData[index.toString()]) toSend[index.toString()] = frameData[index.toString()]
+        }
+
+        if (Object.keys(toSend).length == 0) {
+            console.log(chalk.green(`[+] Out of Frames! Paused loop at frame ${frame}!`))
+            playing = false
+        } else {
+            sendData("192.168.0.104", "frames", toSend)
+        }
     }, 0)
 
     console.log(chalk.green("[+] Loop Started"))
 }
 
-function test() {
+async function test() {
     console.log("[=] Test Started")
-    let testData = fs.readFileSync(__dirname + "/Shows/demo/compiled/section2.json", "utf-8")
+    let testData = fs.readFileSync(__dirname + "/Shows/demo/compiled/transform.json", "utf-8")
     testData = JSON.parse(testData)
     console.log(testData)
     console.log("[=] Sending Data to 192.168.0.104")
-    sendData("192.168.0.104", "frames", testData).then(fetch("http://192.168.0.104/restart"))
-    sendData("192.168.0.104", "settings", {"brightness": 125})
+    await
+    await sendData("192.168.0.104", "frames", testData).then(fetch("http://192.168.0.104/restart"))
     console.log("[+] Test Complete")
 }
 
