@@ -91,7 +91,7 @@ function segment(instruction) {
     console.log(`[~] Segmented pixels ${range[0]} to ${range[1]} into ${color.length} colors at frame ${frame}!`)
 }
 
-let filePath = __dirname + `/Shows/${show}`
+let filePath = __dirname + `/shows/${show}`
 let fileList = fs.readdirSync(filePath + "/raw")
 
 fileList.forEach((section) => {
