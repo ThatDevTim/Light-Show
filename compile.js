@@ -28,7 +28,7 @@ function set(instruction) {
         insertData(frame, compiledInstruction)
     }
 
-    console.log(`[~] Set pixels ${range[0]} to ${range[1]} to (${color}) at frame ${frame}!`)
+    console.log(`${chalk.gray("[~]")} Set pixels ${range[0]} to ${range[1]} to (${color}) at frame ${frame}!`)
 }
 
 function transform(instruction) {
@@ -58,7 +58,7 @@ function transform(instruction) {
         insertData(frame[0] + index, compiledInstruction)
     }
 
-    console.log(`[~] Transformed pixels ${range[0]} to ${range[1]} to from (${color[0]}) to (${color[1]}) at between frame ${frame[0]} and ${frame[1]}!`)
+    console.log(`${chalk.gray("[~]")} Transformed pixels ${range[0]} to ${range[1]} to from (${color[0]}) to (${color[1]}) at between frame ${frame[0]} and ${frame[1]}!`)
 }
 
 function segment(instruction) {
@@ -88,7 +88,7 @@ function segment(instruction) {
         insertData(frame, compiledInstruction)
     }
 
-    console.log(`[~] Segmented pixels ${range[0]} to ${range[1]} into ${color.length} colors at frame ${frame}!`)
+    console.log(`${chalk.gray("[~]")} Segmented pixels ${range[0]} to ${range[1]} into ${color.length} colors at frame ${frame}!`)
 }
 
 let filePath = __dirname + `/shows/${show}`
@@ -111,5 +111,5 @@ fileList.forEach((section) => {
     frameData = JSON.stringify(frameData,)
     fs.writeFileSync(filePath + `/compiled/${section}`, frameData)
 
-    console.log(chalk.green(`[+] Done Compiling ${section}`))
+    console.log(`${chalk.green("[+]")}  Done Compiling ${section}`)
 })

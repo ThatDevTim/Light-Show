@@ -59,9 +59,9 @@ app.get("/play", (req, res) => {
 })
 
 app.listen(port, () => {
-    console.log(chalk.green(`[+] Listening on port ${port}`))
+    console.log(`${chalk.green("[+]")} Listening on port ${chalk.underline(port)}`)
     console.log(`${chalk.gray("[~]")} Clearing tracked Substations`)
     fs.writeFileSync(substations, JSON.stringify([]))
-    console.log(chalk.green(`[+] Done clearing tracked Substations`))
+    console.log(`${chalk.green("[+]")} Done clearing tracked Substations`)
     loop()
 })

@@ -38,7 +38,7 @@ async function sendData(node, method, data) {
         })
 
         res.on("end", () => {
-            console.log(`[~] Data Sent to ${node}/${method} in ${Date.now() - startTime}ms`)
+            console.log(`${chalk.gray("[~]")} Data Sent to ${node}/${method} in ${Date.now() - startTime}ms`)
             return 200
         })
     })
@@ -93,7 +93,7 @@ function loop() {
         }
 
         if (Object.keys(toSend).length == 0) {
-            console.log(chalk.green(`[+] Out of Frames! Paused loop at frame ${frame + initialFrameSend}!`))
+            console.log(chalk.green(`${chalk.green("[+]")} Out of Frames! Paused loop at frame ${frame + initialFrameSend}!`))
             waitingStop = true
         } else {
             subhandlers.forEach(subhandler => {
@@ -102,7 +102,7 @@ function loop() {
         }
     }, 0)
 
-    console.log(chalk.green("[+] Loop Started"))
+    console.log(`${chalk.green("[+]")} Loop Started`)
 }
 
 function reset() {
