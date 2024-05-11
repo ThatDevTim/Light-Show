@@ -131,6 +131,7 @@ void setup() {
     Serial.println("GET request sent successfully");
   } else {
     Serial.println("Error sending GET request");
+    Serial.println(httpCode);
   }
   
   http.end();

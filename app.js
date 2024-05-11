@@ -21,12 +21,17 @@ app.get("/checkin", (req, res) => {
     let data = fs.readFileSync(substations)
     data = JSON.parse(data)
 
-    if (!data.includes(req.hostname)) {
-        data.push(req.hostname)
+    let ip = req.ip
+    if (ip.startsWith("::ffff:")) {
+        ip = ip.slice(7)
+    }
+
+    if (!data.includes(ip)) {
+        data.push(ip)
         fs.writeFileSync(substations, JSON.stringify(data))
-        console.log(`${chalk.green("[+]")} Now tracking ${chalk.underline(req.hostname)} as a Substation`)
+        console.log(`${chalk.green("[+]")} Now tracking ${chalk.underline(ip)} as a Substation`)
     } else {
-        console.log(`${chalk.yellow("[=]")} Already tracking ${chalk.underline(req.hostname)} as a Substation`)
+        console.log(`${chalk.yellow("[=]")} Already tracking ${chalk.underline(ip)} as a Substation`)
     }
 
     load()
