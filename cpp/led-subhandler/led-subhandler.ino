@@ -1,4 +1,5 @@
 #include <WiFi.h>
+#include <HTTPClient.h>
 #include <WebServer.h>
 #include <FastLED.h>
 #include <ArduinoJson.h>
@@ -119,8 +120,20 @@ void setup() {
     server.send(200);
   });
 
-  server.begin(); // Start server
+  server.begin();
   Serial.println("HTTP server started");
+
+  HTTPClient http;
+  http.begin("http://192.168.0.101/checkin");
+  int httpCode = http.GET();
+  
+  if (httpCode > 0) {
+    Serial.println("GET request sent successfully");
+  } else {
+    Serial.println("Error sending GET request");
+  }
+  
+  http.end();
 }
 
 void loop() {

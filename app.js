@@ -1,10 +1,13 @@
 const express = require("express")
+const fs = require("fs")
 const chalk = require("chalk")
 
 const { load, loop, reset, prepare, play } = require("./handler.js")
 
 const app = express()
-const port = 3030
+const port = 80
+
+const substations = __dirname + "/subhandlers.json"
 
 app.use(express.json())
 app.use("/public", express.static('public'))
@@ -12,6 +15,22 @@ app.use("/shows", express.static('shows'))
 
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "/public/html/home.html")
+})
+
+app.get("/checkin", (req, res) => {
+    let data = fs.readFileSync(substations)
+    data = JSON.parse(data)
+
+    if (!data.includes(req.hostname)) {
+        data.push(req.hostname)
+        fs.writeFileSync(substations, JSON.stringify(data))
+        console.log(`${chalk.green("[+]")} Now tracking ${chalk.underline(req.hostname)} as a Substation`)
+    } else {
+        console.log(`${chalk.yellow("[=]")} Already tracking ${chalk.underline(req.hostname)} as a Substation`)
+    }
+
+    load()
+    res.sendStatus(200)
 })
 
 app.get("/load", (req, res) => {
@@ -36,6 +55,8 @@ app.get("/play", (req, res) => {
 
 app.listen(port, () => {
     console.log(chalk.green(`[+] Listening on port ${port}`))
-    load()
+    console.log(`${chalk.gray("[~]")} Clearing tracked Substations`)
+    fs.writeFileSync(substations, JSON.stringify([]))
+    console.log(chalk.green(`[+] Done clearing tracked Substations`))
     loop()
 })

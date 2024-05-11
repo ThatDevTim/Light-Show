@@ -44,7 +44,7 @@ async function sendData(node, method, data) {
     })
 
     req.on("error", (e) => {
-        console.error(chalk.red(`[-] Request Error: ${e.message}`));
+        console.error(`${chalk.red("[-] Request Error:")} ${e.message}`);
     })
 
     req.write(postData)
