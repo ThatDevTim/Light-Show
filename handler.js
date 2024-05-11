@@ -1,7 +1,6 @@
 const http = require("http")
 const fs = require("fs")
 const chalk = require("chalk")
-const fetch = require("node-fetch")
 
 let playing = false
 let waitingStop = false
