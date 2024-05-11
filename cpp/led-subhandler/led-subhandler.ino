@@ -124,7 +124,7 @@ void setup() {
   Serial.println("HTTP server started");
 
   HTTPClient http;
-  http.begin("http://192.168.0.101/checkin");
+  http.begin("http://192.168.0.101/register");
   int httpCode = http.GET();
   
   if (httpCode > 0) {
