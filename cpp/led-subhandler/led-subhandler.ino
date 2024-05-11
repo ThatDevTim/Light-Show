@@ -105,8 +105,10 @@ void setup() {
     server.send(200, "application/json", responseData); // Send the global data as JSON
   });
 
-  server.on("/restart", HTTP_GET, []() {
+  server.on("/reset", HTTP_GET, []() {
     frame = 1;
+    frameBuffer.clear();
+    Serial.println("Buffer cleared and frame set to 1");
     server.send(200);
   });
 

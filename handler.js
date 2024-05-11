@@ -106,6 +106,7 @@ function loop() {
 }
 
 function reset() {
+    frame = 0
     subhandlers.forEach(subhandler => {
         fetch(`http://${subhandler}/reset`)
     })
@@ -119,7 +120,6 @@ function prepare() {
     }
 
     subhandlers.forEach(subhandler => {
-        fetch(`http://${subhandler}/restart`)
         sendData(subhandler, "settings", { "brightness": 255 })
         sendData(subhandler, "frames", toSend)  
     })
