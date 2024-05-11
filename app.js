@@ -17,6 +17,10 @@ app.get("/", (req, res) => {
     res.sendFile(__dirname + "/public/html/home.html")
 })
 
+app.get("/control", (req, res) => {
+    res.sendFile(__dirname + "/public/html/control.html")
+})
+
 app.get("/register", (req, res) => {
     let data = fs.readFileSync(substations)
     data = JSON.parse(data)
