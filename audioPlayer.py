@@ -39,9 +39,6 @@ try:
         elif command == 'exit':
             break
         time.sleep(0.1)
-        if not pygame.mixer.music.get_busy():
-            sys.stdout.write("Finished playing")
-            sys.stdout.flush()
 except Exception as e:
     sys.stdout.write(f"An error occurred: {e}")
     sys.stdout.flush()
