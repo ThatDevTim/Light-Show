@@ -4,8 +4,8 @@
 #include <FastLED.h>
 #include <ArduinoJson.h>
 
-#define NUM_LEDS 256        // Number of LEDs in the strip
-#define DATA_PIN 3          // Data pin where the strip is connected
+#define NUM_LEDS 500        // Number of LEDs in the strip
+#define DATA_PIN 13          // Data pin where the strip is connected
 #define LED_TYPE WS2812B    // Type of LED strip
 #define COLOR_ORDER GRB     // Color order of the LED strip
 #define BRIGHTNESS 10       // Brightness level (0-255)
@@ -44,6 +44,12 @@ void setup() {
   Serial.println("WiFi connected.");
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
+
+  server.on("/reboot", HTTP_GET, []() {
+    server.send(200, "text/plain", "Rebooting!");
+    delay(250);
+    ESP.restart();
+  });
 
   // POST endpoint for receiving data
   server.on("/frames", HTTP_POST, []() {
@@ -109,6 +115,8 @@ void setup() {
   server.on("/reset", HTTP_GET, []() {
     frame = 1;
     frameBuffer.clear();
+    FastLED.clear();
+    FastLED.show();
     Serial.println("Buffer cleared and frame set to 1");
     server.send(200);
   });
