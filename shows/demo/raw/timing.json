@@ -1,0 +1,74 @@
+[
+    {
+        "type": "set",
+        "range": [1, 256],
+        "color": [0, 0, 1],
+        "frame": 2
+    },
+    {
+        "type": "set",
+        "range": [1, 256],
+        "color": [0, 0, 0],
+        "frame": 32
+    },
+    {
+        "type": "set",
+        "range": [1, 256],
+        "color": [0, 0, 1],
+        "frame": 62
+    },
+    {
+        "type": "set",
+        "range": [1, 256],
+        "color": [0, 0, 0],
+        "frame": 92
+    },
+    {
+        "type": "set",
+        "range": [1, 256],
+        "color": [0, 0, 1],
+        "frame": 122
+    },
+    {
+        "type": "set",
+        "range": [1, 256],
+        "color": [0, 0, 0],
+        "frame": 152
+    },
+    {
+        "type": "set",
+        "range": [1, 256],
+        "color": [0, 0, 1],
+        "frame": 182
+    },
+    {
+        "type": "set",
+        "range": [1, 256],
+        "color": [0, 0, 0],
+        "frame": 212
+    },
+    {
+        "type": "set",
+        "range": [1, 256],
+        "color": [0, 0, 1],
+        "frame": 242
+    },
+    {
+        "type": "set",
+        "range": [1, 256],
+        "color": [0, 0, 0],
+        "frame": 272
+    },
+    {
+        "type": "set",
+        "range": [1, 256],
+        "color": [0, 0, 1],
+        "frame": 302
+    },
+    {
+        "type": "set",
+        "range": [1, 256],
+        "color": [0, 0, 0],
+        "frame": 332
+    }
+]

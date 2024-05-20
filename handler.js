@@ -2,6 +2,9 @@ const http = require("http")
 const fs = require("fs")
 const chalk = require("chalk")
 const fetch = require("node-fetch")
+const { spawn } = require("child_process")
+
+const pythonProcess = spawn("python3", ["audioPlayer.py"])
 
 let playing = false
 let waitingStop = false
@@ -16,6 +19,31 @@ let lastFrame = 0
 
 let subhandlers
 let frameData
+
+function loadAudio(filePath) {
+    console.log("Loading audio file")
+    pythonProcess.stdin.write(`load ${filePath}\n`)
+}
+
+function playAudio() {
+    if (!pythonProcess.stdin.writableEnded) {
+        console.log("Sending play command audioPlayer")
+        pythonProcess.stdin.write('play\n')
+    } else {
+        console.error('Attempted to write to a closed stream')
+    }
+}
+
+function pauseAudio() {
+    console.log("Sending pause command to audioPlayer")
+    pythonProcess.stdin.write('pause\n')
+}
+
+function stopPythonScript() {
+    if (!pythonProcess.stdin.writableEnded) {
+        pythonProcess.stdin.write('exit\n')
+    }
+}
 
 async function sendData(node, method, data) {
     const startTime = Date.now()
@@ -32,7 +60,7 @@ async function sendData(node, method, data) {
 
     let result = ""
     const req = http.request(url, options, (res) => {
-        res.setEncoding("utf8");
+        res.setEncoding("utf8")
         res.on("data", (chunk) => {
             result += chunk
         })
@@ -44,7 +72,7 @@ async function sendData(node, method, data) {
     })
 
     req.on("error", (e) => {
-        console.error(`${chalk.red("[-] Request Error:")} ${e.message}`);
+        console.error(`${chalk.red("[-] Request Error:")} ${e.message}`)
     })
 
     req.write(postData)
@@ -53,13 +81,14 @@ async function sendData(node, method, data) {
 
 function load() {
     subhandlers = fs.readFileSync(__dirname + "/subhandlers.json", "utf-8")
-    subhandlers = JSON.parse(subhandlers)
+    subhandlers = JSON.parse(subhandlers) || []
 
-    frameData = fs.readFileSync(__dirname + "/shows/demo/compiled/transform.json", "utf-8")
+    frameData = fs.readFileSync(__dirname + "/shows/demo/compiled/timing.json", "utf-8")
     frameData = JSON.parse(frameData)
 }
 
 function loop() {
+    load()
     setInterval(() => {
         if (!playing) return
 
@@ -78,6 +107,8 @@ function loop() {
 
             if (frame == lastFrame + 3) {
                 play()
+                pauseAudio()
+                waitingStop = false
             }
             return
         }
@@ -93,7 +124,7 @@ function loop() {
         }
 
         if (Object.keys(toSend).length == 0) {
-            console.log(chalk.green(`${chalk.green("[+]")} Out of Frames! Paused loop at frame ${frame + initialFrameSend}!`))
+            console.log(`${chalk.green("[+]")} Out of Frames! Paused loop at frame ${frame + initialFrameSend}!`)
             waitingStop = true
         } else {
             subhandlers.forEach(subhandler => {
@@ -113,6 +144,8 @@ function reset() {
 }
 
 function prepare() {
+    loadAudio("./music/60BPM.mp3")
+
     let toSend = {}
 
     for (let index = 1; index <= initialFrameSend; index++) {
@@ -129,12 +162,31 @@ function play() {
     subhandlers.forEach(subhandler => {
         let now = Date.now()
         fetch(`http://${subhandler}/play`).then(() => {
-            console.log(Date.now() - now)
+            console.log(`${chalk.green("[+]")} Command sent to ${chalk.underline(subhandler)} in ${Date.now() - now}ms!`)
         })
     })
+
+    if (!playing) playAudio()
 
     startTime = Date.now()
     playing = !playing
 }
+
+pythonProcess.stdout.on("data", (data) => {
+    console.log(`${chalk.grey("[~]")} Python Output: ${chalk.underline(data.toString())}`)
+})
+
+pythonProcess.stderr.on("data", (data) => {
+    console.log(`${chalk.red("[-]")} Python Error: ${chalk.underline(data.toString())}`)
+})
+
+pythonProcess.on("close", (code) => {
+    console.log(`${chalk.green("[+]")} Python script exited with code ${chalk.underline(code)}`)
+})
+
+process.on('exit', () => {
+    stopPythonScript()
+    pythonProcess.kill()
+})
 
 module.exports = { load, loop, reset, prepare, play }
