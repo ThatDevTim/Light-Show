@@ -77,7 +77,7 @@ function segment(instruction) {
         if (finish > range[1]) finish = range[1]
 
         let setColor = color[index % color.length]
-        setColor = [Math.round((setColor[0] / 360) * 255), Math.random(setColor[1] * 255), Math.round(setColor[2])]
+        setColor = [Math.round((setColor[0] / 360) * 1000) / 1000, Math.round(setColor[1] * 1000) / 1000, Math.round(setColor[2] * 1000) / 1000]
 
         let compiledInstruction = [
             "range",
@@ -111,5 +111,5 @@ fileList.forEach((section) => {
     frameData = JSON.stringify(frameData,)
     fs.writeFileSync(filePath + `/compiled/${section}`, frameData)
 
-    console.log(`${chalk.green("[+]")}  Done Compiling ${section}`)
+    console.log(`${chalk.green("[+]")} Done Compiling ${section}`)
 })
