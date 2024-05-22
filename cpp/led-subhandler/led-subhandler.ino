@@ -3,8 +3,9 @@
 #include <WebServer.h>
 #include <FastLED.h>
 #include <ArduinoJson.h>
+#include "HardwareSerial.h"
 
-#define NUM_LEDS 500        // Number of LEDs in the strip
+#define NUM_LEDS 1000         // Number of LEDs in the strip
 #define DATA_PIN 13          // Data pin where the strip is connected
 #define LED_TYPE WS2812B    // Type of LED strip
 #define COLOR_ORDER GRB     // Color order of the LED strip
@@ -28,6 +29,7 @@ DynamicJsonDocument frameBuffer(10240); // Adjust size based on expected JSON si
 
 void setup() {
   Serial.begin(115200);
+  Serial2.begin(115200, SERIAL_8N1, 16, 17);
 
   FastLED.addLeds<LED_TYPE, DATA_PIN, COLOR_ORDER>(leds, NUM_LEDS).setCorrection(TypicalLEDStrip);
   FastLED.setBrightness(BRIGHTNESS);
@@ -147,6 +149,17 @@ void setup() {
 
 void loop() {
   server.handleClient();
+
+  if (Serial2.available()) { // Check if there is data to read
+    String data = Serial2.readStringUntil('\n'); // Read the data until newline
+    if (data.startsWith("F-Play")) {
+      playing = !playing;
+      Serial.println("Playing: " + String(playing));
+    }
+    Serial.println(data); // Print the data to the Serial Monitor (Pass the message down)
+  }
+
+  // Need to pass the message *UP STREAM*
 
   if (playing == false) return;
 
