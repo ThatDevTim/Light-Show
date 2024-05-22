@@ -3,8 +3,11 @@ const fs = require("fs")
 const chalk = require("chalk")
 const fetch = require("node-fetch")
 const { spawn } = require("child_process")
+const { SerialPort } = require('serialport')
 
 const pythonProcess = spawn("python3", ["audioPlayer.py"])
+
+let showName = "timing"
 
 let playing = false
 let waitingStop = false
@@ -21,21 +24,21 @@ let subhandlers
 let frameData
 
 function loadAudio(filePath) {
-    console.log("Loading audio file")
+    console.log(`${chalk.gray("[~]")} Loading audio file`)
     pythonProcess.stdin.write(`load ${filePath}\n`)
 }
 
 function playAudio() {
     if (!pythonProcess.stdin.writableEnded) {
-        console.log("Sending play command audioPlayer")
+        console.log(`${chalk.gray("[~]")} Sending play command audioPlayer`)
         pythonProcess.stdin.write('play\n')
     } else {
-        console.error('Attempted to write to a closed stream')
+        console.error(`${chalk.red("[-]")} Attempted to write to a closed stream`)
     }
 }
 
 function pauseAudio() {
-    console.log("Sending pause command to audioPlayer")
+    console.log(`${chalk.gray("[~]")} Sending pause command to audioPlayer`)
     pythonProcess.stdin.write('pause\n')
 }
 
@@ -43,6 +46,35 @@ function stopPythonScript() {
     if (!pythonProcess.stdin.writableEnded) {
         pythonProcess.stdin.write('exit\n')
     }
+}
+
+function UART(message) {
+    const port = new SerialPort({
+        path: '/dev/ttyS0',
+        baudRate: 115200
+    })
+
+    port.on('open', () => {
+        console.log(`${chalk.gray("[~]")} Serial port opened`)
+        port.write(message + '\n', (err) => {
+          if (err) {
+            return console.log(`Error on write: ${chalk.underline(err.message)}`)
+          }
+          console.log(`${chalk.green("[+]")} Serial port message sent: ${chalk.underline(message)}`)
+        })
+      
+        port.drain(() => {
+          port.close((err) => {
+            if (err) {
+                return console.log(`Error closing port: ${chalk.underline(err.message)}`)
+            }
+          })
+        })
+    })
+
+    port.on('error', (err) => {
+        return console.log(`Serial port error: ${chalk.underline(err.message)}`)
+    })
 }
 
 async function sendData(node, method, data) {
@@ -83,7 +115,7 @@ function load() {
     subhandlers = fs.readFileSync(__dirname + "/subhandlers.json", "utf-8")
     subhandlers = JSON.parse(subhandlers) || []
 
-    frameData = fs.readFileSync(__dirname + "/shows/demo/compiled/timing.json", "utf-8")
+    frameData = fs.readFileSync(__dirname + `/shows/demo/compiled/${showName}/compact.json`, "utf-8")
     frameData = JSON.parse(frameData)
 }
 
@@ -159,12 +191,14 @@ function prepare() {
 }
 
 function play() {
-    subhandlers.forEach(subhandler => {
-        let now = Date.now()
-        fetch(`http://${subhandler}/play`).then(() => {
-            console.log(`${chalk.green("[+]")} Command sent to ${chalk.underline(subhandler)} in ${Date.now() - now}ms!`)
-        })
-    })
+    // subhandlers.forEach(subhandler => {
+    //     let now = Date.now()
+    //     fetch(`http://${subhandler}/play`).then(() => {
+    //         console.log(`${chalk.green("[+]")} Command sent to ${chalk.underline(subhandler)} in ${Date.now() - now}ms!`)
+    //     })
+    // })
+
+    UART("F-Play")
 
     if (!playing) playAudio()
 
@@ -173,7 +207,7 @@ function play() {
 }
 
 pythonProcess.stdout.on("data", (data) => {
-    console.log(`${chalk.grey("[~]")} Python Output: ${chalk.underline(data.toString())}`)
+    console.log(`${chalk.green("[+]")} Python Output: ${chalk.underline(data.toString())}`)
 })
 
 pythonProcess.stderr.on("data", (data) => {
@@ -181,7 +215,7 @@ pythonProcess.stderr.on("data", (data) => {
 })
 
 pythonProcess.on("close", (code) => {
-    console.log(`${chalk.green("[+]")} Python script exited with code ${chalk.underline(code)}`)
+    console.log(`${chalk.gray("[~]")} Python script exited with code ${chalk.underline(code)}`)
 })
 
 process.on('exit', () => {
