@@ -93,11 +93,16 @@ function segment(instruction) {
 
 let filePath = __dirname + `/shows/${show}`
 let fileList = fs.readdirSync(filePath + "/raw")
+let sections = []
 
 fileList.forEach((section) => {
-    console.log(chalk.yellow(`[=] Compiling ${section}`))
+    sections.push(section.split(".")[0])
+})
 
-    let data = fs.readFileSync(filePath + `/raw/${section}`, "utf-8")
+sections.forEach((section) => {
+    console.log(chalk.yellow(`[=] Compiling ${chalk.underline(section)}`))
+
+    let data = fs.readFileSync(filePath + `/raw/${section}.json`, "utf-8")
     data = JSON.parse(data)
 
     frameData = {}
@@ -108,8 +113,10 @@ fileList.forEach((section) => {
         if (instruction.type == "segment") segment(instruction)
     })
 
-    frameData = JSON.stringify(frameData,)
-    fs.writeFileSync(filePath + `/compiled/${section}`, frameData)
+    frameData = JSON.stringify(frameData)
 
-    console.log(`${chalk.green("[+]")} Done Compiling ${section}`)
+    fs.mkdirSync(filePath + `/compiled/${section}`, { recursive: true })
+    fs.writeFileSync(filePath + `/compiled/${section}/compact.json`, frameData)
+
+    console.log(`${chalk.green("[+]")} Done Compiling ${chalk.underline(section)}`)
 })
