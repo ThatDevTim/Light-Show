@@ -1,7 +1,6 @@
 const http = require("http")
 const fs = require("fs")
 const chalk = require("chalk")
-const fetch = require("node-fetch")
 const { spawn } = require("child_process")
 const { SerialPort } = require('serialport')
 
