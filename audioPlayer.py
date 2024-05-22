@@ -1,11 +1,10 @@
 from os import environ
-environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'  # Suppress Pygame welcome message
+environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
 
 import pygame
 import sys
 import time
 
-# Initialize Pygame mixer
 pygame.mixer.init()
 
 sys.stdout.write("Ready to load audio")
