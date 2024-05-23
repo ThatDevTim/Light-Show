@@ -1,0 +1,12 @@
+{
+    "192.168.0.102": {
+        "zone": "section1",
+        "brightness": 255,
+        "registered": false
+    },
+    "192.168.0.103": {
+        "zone": "section2",
+        "brightness": 255,
+        "registered": false
+    }
+}

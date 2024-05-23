@@ -5,27 +5,42 @@
 #include <ArduinoJson.h>
 #include "HardwareSerial.h"
 
-#define NUM_LEDS 1000         // Number of LEDs in the strip
-#define DATA_PIN 13          // Data pin where the strip is connected
-#define LED_TYPE WS2812B    // Type of LED strip
-#define COLOR_ORDER GRB     // Color order of the LED strip
-#define BRIGHTNESS 10       // Brightness level (0-255)
+#define NUM_LEDS 1000
+#define DATA_PIN 13
+#define LED_TYPE WS2812B
+#define COLOR_ORDER GRB
+#define BRIGHTNESS 10
 
-const char* ssid = "ShowPoint";        // Wi-Fi SSID
-const char* password = "6802Point"; // Wi-Fi password
+const char* ssid = "ShowPoint";
+const char* password = "6802Point";
 
-String hostname = "ESP-32"; // Define a Hostname
+String hostname = "ESP-32";
 
-CRGB leds[NUM_LEDS];        // Array of LED color data
-WebServer server(80);       // Create a web server object that listens for HTTP request on port 80
+CRGB leds[NUM_LEDS];
+WebServer server(80);
 
 bool playing = false;
 
-unsigned long frame = 1;          // Current frame to render
-unsigned long lastUpdateTime = 0; // Timestamp of last LED update
-const int updateInterval = 1000 / 30;    // Interval at which to update the LEDs (milliseconds)
+unsigned long frame = 1;
+unsigned long lastUpdateTime = 0;
+const int updateInterval = 1000 / 30;
 
-DynamicJsonDocument frameBuffer(10240); // Adjust size based on expected JSON size
+DynamicJsonDocument frameBuffer(10240);
+
+void attemptRegister() {
+  HTTPClient http;
+  http.begin("http://192.168.0.101/register");
+  int httpCode = http.GET();
+  
+  if (httpCode > 0) {
+    Serial.println("GET request sent successfully");
+  } else {
+    Serial.println("Error sending GET request");
+    Serial.println(httpCode);
+  }
+  
+  http.end();
+}
 
 void setup() {
   Serial.begin(115200);
@@ -34,10 +49,9 @@ void setup() {
   FastLED.addLeds<LED_TYPE, DATA_PIN, COLOR_ORDER>(leds, NUM_LEDS).setCorrection(TypicalLEDStrip);
   FastLED.setBrightness(BRIGHTNESS);
 
-  // Connect to Wi-Fi
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
-  WiFi.setHostname(hostname.c_str()); // Set the Hostname
+  WiFi.setHostname(hostname.c_str());
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
@@ -46,6 +60,8 @@ void setup() {
   Serial.println("WiFi connected.");
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
+  Serial.println("MAC address: ");
+  Serial.println(WiFi.macAddress());
 
   server.on("/reboot", HTTP_GET, []() {
     server.send(200, "text/plain", "Rebooting!");
@@ -53,7 +69,6 @@ void setup() {
     ESP.restart();
   });
 
-  // POST endpoint for receiving data
   server.on("/frames", HTTP_POST, []() {
     Serial.println("Received!");
     if (!server.hasArg("plain")) {
@@ -68,17 +83,11 @@ void setup() {
       return;
     }
 
-    // Assuming newFrames is a JSON object
     JsonObject obj = newFrames.as<JsonObject>();
 
-    // Merge new data into the global JSON object
     for (auto kvp : obj) {
       frameBuffer[kvp.key()] = kvp.value();
     }
-
-    // Uncomment to debug print the entire frame buffer
-    // Serial.println("Frame Buffer Object:");
-    // serializeJsonPretty(frameBuffer, Serial);
 
     server.send(200, "text/plain", "Data received!");
   });
@@ -110,8 +119,8 @@ void setup() {
   // GET endpoint for simple test
   server.on("/buffer", HTTP_GET, []() {
     String responseData;
-    serializeJson(frameBuffer, responseData); // Serialize the global data to a string
-    server.send(200, "application/json", responseData); // Send the global data as JSON
+    serializeJson(frameBuffer, responseData);
+    server.send(200, "application/json", responseData);
   });
 
   server.on("/reset", HTTP_GET, []() {
@@ -133,33 +142,39 @@ void setup() {
   server.begin();
   Serial.println("HTTP server started");
 
-  HTTPClient http;
-  http.begin("http://192.168.0.101/register");
-  int httpCode = http.GET();
-  
-  if (httpCode > 0) {
-    Serial.println("GET request sent successfully");
-  } else {
-    Serial.println("Error sending GET request");
-    Serial.println(httpCode);
-  }
-  
-  http.end();
+  attemptRegister();
 }
 
 void loop() {
   server.handleClient();
 
-  if (Serial2.available()) { // Check if there is data to read
-    String data = Serial2.readStringUntil('\n'); // Read the data until newline
+  if (Serial2.available()) {
+    String data = Serial2.readStringUntil('\n');
+
+    if (data.startsWith("F-Register")) {
+      attemptRegister();
+    }
     if (data.startsWith("F-Play")) {
-      playing = !playing;
-      Serial.println("Playing: " + String(playing));
+      playing = true;
+      Serial.println("Playing");
+    }
+    if (data.startsWith("F-Pause")) {
+      playing = false;
+      Serial.println("Paused");
+    }
+    if (data.startsWith("F-Reset")) {
+      playing = false;
+      frame = 1;
+
+      frameBuffer.clear();
+
+      FastLED.clear();
+      FastLED.show();
+
+      Serial.println("Buffer cleared and frame set to 1");
     }
     Serial.println(data); // Print the data to the Serial Monitor (Pass the message down)
   }
-
-  // Need to pass the message *UP STREAM*
 
   if (playing == false) return;
 
