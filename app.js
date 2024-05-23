@@ -2,12 +2,14 @@ const express = require("express")
 const fs = require("fs")
 const chalk = require("chalk")
 
-const { load, loop, reset, prepare, play } = require("./handler.js")
+require("dotenv").config()
+
+const debug = require("./debug.js")
+
+const handler = require("./mainHandler.js")
 
 const app = express()
 const port = 80
-
-const substations = __dirname + "/subhandlers.json"
 
 app.use(express.json())
 app.use("/public", express.static('public'))
@@ -22,50 +24,70 @@ app.get("/control", (req, res) => {
 })
 
 app.get("/register", (req, res) => {
-    let data = fs.readFileSync(substations)
-    data = JSON.parse(data)
+    let substationDictionary = fs.readFileSync(__dirname + "/substationDictionary.json")
+    substationDictionary = JSON.parse(substationDictionary)
 
     let ip = req.ip
     if (ip.startsWith("::ffff:")) {
         ip = ip.slice(7)
     }
 
-    if (!data.includes(ip)) {
-        data.push(ip)
-        fs.writeFileSync(substations, JSON.stringify(data))
-        console.log(`${chalk.green("[+]")} Now tracking ${chalk.underline(ip)} as a Substation`)
+    if (Object.keys(substationDictionary).includes(ip)) {
+        substationDictionary[ip]["registered"] = true
+        fs.writeFileSync(__dirname + "/substationDictionary.json", JSON.stringify(substationDictionary, null, 4))
+        debug.success(`Now tracking ${chalk.underline(ip)} as a Substation`)
     } else {
-        console.log(`${chalk.yellow("[=]")} Already tracking ${chalk.underline(ip)} as a Substation`)
+        debug.failure(`Can't register ${chalk.underline(ip)} as a Substation`)
     }
 
-    load()
+    handler.load()
     res.sendStatus(200)
 })
 
 app.get("/load", (req, res) => {
-    load()
+    handler.load()
     res.sendStatus(200)
 })
 
 app.get("/reset", (req, res) => {
-    reset()
+    handler.reset()
+    res.sendStatus(200)
+})
+
+app.get("/attemptRegister", (req, res) => {
+    handler.register()
     res.sendStatus(200)
 })
 
 app.get("/prepare", (req, res) => {
-    prepare()
+    handler.prepare()
     res.sendStatus(200)
 })
 
 app.get("/play", (req, res) => {
-    play()
+    handler.play()
+    res.sendStatus(200)
+})
+
+app.get("/pause", (req, res) => {
+    handler.pause()
     res.sendStatus(200)
 })
 
 app.listen(port, () => {
-    console.log(`${chalk.green("[+]")} Listening on port ${chalk.underline(port)}`)
-    console.log(`${chalk.gray("[~]")} Clearing tracked Substations`)
-    fs.writeFileSync(substations, JSON.stringify([]))
-    console.log(`${chalk.green("[+]")} Done clearing tracked Substations`)
-    loop()
+    debug.success(`Listening on port ${chalk.underline(port)}`)
+    debug.note("Clearing tracked Substations")
+    
+    let substationDictionary = fs.readFileSync(__dirname + "/substationDictionary.json")
+    substationDictionary = JSON.parse(substationDictionary)
+
+    Object.keys(substationDictionary).forEach(substation => {
+        substationDictionary[substation]["registered"] = false
+    })
+
+    fs.writeFileSync(__dirname + "/substationDictionary.json", JSON.stringify(substationDictionary, null, 4))
+
+    debug.success("Done clearing tracked Substations")
+
+    handler.loop()
 })
