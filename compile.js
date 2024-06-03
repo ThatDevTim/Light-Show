@@ -22,7 +22,7 @@ function set(instruction) {
         let compiledInstruction = [
             "range",
             range,
-            [Math.round(color[0] * 1000) / 1000, color[1], color[2]]
+            [Math.round((color[0] / 360) * 1000) / 1000, color[1], color[2]]
         ]
 
         insertData(frame, compiledInstruction)

@@ -2,7 +2,7 @@ const chalk = require("chalk")
 const debug = require("./debug.js")
 const { spawn } = require("child_process")
 
-const pythonProcess = spawn("python3", ["audioPlayer.py"])
+const pythonProcess = spawn("python", ["audioPlayer.py"])
 
 function load(filePath) {
     debug.note("Loading audio file")

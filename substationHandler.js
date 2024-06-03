@@ -103,7 +103,9 @@ function prepare() {
 			if (frameData[index.toString()]) toSend[index.toString()] = frameData[index.toString()]
 		}
 
-		sendData(substation, "settings", { "brightness": 5 })
+		let brightness = substationDictionary[substation].brightness
+
+		sendData(substation, "settings", { brightness })
 		sendData(substation, "frames", toSend)
 	})
 }
