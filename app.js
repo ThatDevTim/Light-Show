@@ -23,6 +23,14 @@ app.get("/control", (req, res) => {
     res.sendFile(__dirname + "/public/html/control.html")
 })
 
+app.get("/timeline", (req, res) => {
+    res.sendFile(__dirname + "/public/html/timeline.html")
+})
+
+app.get("/preview", (req, res) => {
+    res.sendFile(__dirname + "/public/html/preview.html")
+})
+
 app.get("/register", (req, res) => {
     let substationDictionary = fs.readFileSync(__dirname + "/substationDictionary.json")
     substationDictionary = JSON.parse(substationDictionary)

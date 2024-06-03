@@ -1,0 +1,268 @@
+:root {
+    --light-grey: #808080;
+    --dark-grey: #404040;
+    --blue: #00137F;
+    --red: #7F0000;
+    --purple: #57007F;
+    --green: #267F00;
+    --yellow: #FFD800;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+}
+
+#top {
+    padding: 10px;
+    height: 33%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--dark-grey);
+    border-bottom: 3px solid white;
+}
+
+#showSelector {
+    height: 100%;
+    width: 25%;
+    background-color: var(--light-grey);
+    border-radius: 10px;
+    border: 2px solid black;
+}
+
+#preview {
+    height: 100%;
+    width: 50%;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    border: 2px solid var(--light-grey);
+}
+
+#showInfo {
+    height: 100%;
+    width: 25%;
+    background-color: var(--light-grey);
+    border-radius: 10px;
+    border: 2px solid black;
+}
+
+#bottom {
+    padding: 10px;
+    height: 67%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--light-grey);
+}
+
+#timeline {
+    padding: 15px;
+    height: 100%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    background-color: var(--dark-grey);
+    border-radius: 10px;
+    border: 2px solid black;
+}
+
+#controls {
+    height: 5%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.controlSection {
+    height: 100%;
+    width: 15%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.icon {
+    height: 100%;
+    aspect-ratio: 1/1;
+    transition: .25s;
+    color: var(--light-grey);
+}
+
+#new:hover {
+    color: var(--green);
+}
+
+#duplicate:hover {
+    color: var(--yellow);
+}
+
+#delete:hover {
+    color: var(--red);
+}
+
+#time {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#colors {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.color {
+    aspect-ratio: 1/1;
+    border-radius: 25px;
+    transition: .25s;
+}
+
+#bounds {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.bound {
+    width: 5%;
+}
+
+#sections {
+    height: 95%;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.section {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    border-radius: 10px;
+}
+
+.layer {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    background-color: var(--light-grey);
+}
+
+.step {
+    padding-left: 5px;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    border-radius: 25px;
+    transition: .25s;
+    user-select: none;
+    text-wrap: nowrap;
+}
+
+.red {
+    background-color: var(--red);
+    border: 2px solid var(--red);
+}
+
+.blue {
+    background-color: var(--blue);
+    border: 2px solid var(--blue);
+}
+
+.purple {
+    background-color: var(--purple);
+    border: 2px solid var(--purple);
+}
+
+.green {
+    background-color: var(--green);
+    border: 2px solid var(--green);
+}
+
+.yellow {
+    background-color: var(--yellow);
+    border: 2px solid var(--yellow);
+    box-shadow: inset 0 0 0 1px var(--yellow);
+}
+
+.step.yellow {
+    color: black;
+}
+
+.current.yellow {
+    box-shadow: inset 0 0 0 1px black;
+}
+
+.current {
+    border: 2px solid white;
+}
+
+#current {
+    padding: 5px;
+    height: 100%;
+    width: 20%;
+    background-color: var(--dark-grey);
+    border-radius: 10px;
+    border: 2px solid black;
+}
+
+#editor {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.subsection {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#update {
+    display: unset;
+}
+
+.hidden {
+    display: none !important;
+}
