@@ -1,0 +1,20 @@
+{
+    "set": {
+        "range": {"start": "int", "end": "int"},
+        "color": {"hue": "int", "saturation": "int", "value": "int"},
+        "frame": "int"
+    },
+    "transform": {
+        "range": {"start": "int", "end": "int"},
+        "color": {
+            "start": {"hue": "int", "saturation": "int", "value": "int"},
+            "end": {"hue": "int", "saturation": "int", "value": "int"}
+        },
+        "frame": {"start": "int", "end": "int"}
+    },
+    "segment": {
+        "range": {"start": "int", "end": "int"},
+        "color": [{"start": "int", "end": "int"}, "multiple"],
+        "frame": "int"
+    }
+}

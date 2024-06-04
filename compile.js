@@ -13,6 +13,10 @@ function insertData(frame, data) {
     frameData[frame].push(data)
 }
 
+function toByte(int) {
+    return Math.round(int * 255)
+}
+
 function set(instruction) {
     let range = instruction.range
     let color = instruction.color
@@ -21,8 +25,8 @@ function set(instruction) {
     if (Array.isArray(range)) {
         let compiledInstruction = [
             "range",
-            range,
-            [Math.round((color[0] / 360) * 1000) / 1000, color[1], color[2]]
+            [range.start, range.end],
+            [toByte(color.hue / 360), toByte(color.saturation / 100), toByte(color.value / 100)]
         ]
 
         insertData(frame, compiledInstruction)
@@ -36,23 +40,25 @@ function transform(instruction) {
     let color = instruction.color
     let frame = instruction.frame
 
-    let hChange = color[1][0] - color[0][0]
-    let sChange = color[1][1] - color[0][1]
-    let vChange = color[1][2] - color[0][2]
+    let hChange = color.end.hue - color.start.hue
+    let sChange = color.end.saturation - color.start.saturation
+    let vChange = color.end.value - color.start.value
 
     let duration = frame[1] - frame[0]
 
     for (let index = 0; index <= duration; index++) {
-        let setColor = [
-            Math.round(((color[0][0] + ((index / duration) * hChange)) / 360) * 1000) / 1000,
-            Math.round((color[0][1] + ((index / duration) * sChange)) * 1000) / 1000,
-            Math.round((color[0][2] + ((index / duration) * vChange)) * 1000) / 1000
-        ]
+        let hOffset = (index / duration) * hChange
+        let sOffset = (index / duration) * sChange
+        let vOffset = (index / duration) * vChange
         
         let compiledInstruction = [
             "range",
             range,
-            setColor
+            [
+                toByte((color.start.hue + hOffset) / 360),
+                toByte((color.start.saturation + sOffset) / 360),
+                toByte((color.start.value + vOffset) / 360),
+            ]
         ]
 
         insertData(frame[0] + index, compiledInstruction)
