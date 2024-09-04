@@ -46,7 +46,7 @@ function reset() {
 }
 
 function prepare() {
-    audio.load("./music/60BPM.mp3")
+    audio.load("./public/music/60BPM.mp3")
     substation.prepare()
 }
 
