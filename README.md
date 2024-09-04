@@ -39,6 +39,33 @@ JSON format for how the show data should be written.
     }
     "frame": {"start": 0, "end": 0}
 }
+
+**Segment**
+```
+{
+    "details": { "name": "", "color": "" },
+    "type": "segment",
+    "range": {"start": 0, "end": 0},
+    "length": 0,
+    "color": [
+        {"hue": 0, "saturation": 0, "value": 0},
+        {"hue": 0, "saturation": 0, "value": 0},
+        ...
+    ]
+    "frame": {"start": 0, "end": 0}
+}
+```
+
+**Trail**
+```
+{
+    "details": { "name": "", "color": "" },
+    "type": "trail",
+    "range": {"start": 0, "end": 0},
+    "life": 0,
+    "color": {"hue": 0, "saturation": 0, "value": 0},
+    "frame": {"start": 0, "end": 0}
+}
 ```
 </details>
 
