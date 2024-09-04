@@ -14,6 +14,7 @@ Compiled frameData is distrobuted in chunks starting as soon as the `play` instr
 JSON format for how the show data should be written.
 
 ## Raw
+
 <details><summary>View Types</summary>
 
 **Set**
@@ -39,6 +40,7 @@ JSON format for how the show data should be written.
     }
     "frame": {"start": 0, "end": 0}
 }
+```
 
 **Segment**
 ```
