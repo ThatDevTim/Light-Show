@@ -4,9 +4,9 @@ const chalk = require("chalk")
 
 require("dotenv").config()
 
-const debug = require("./debug.js")
+const debug = require("./handlers/debugHandler.js")
 
-const handler = require("./mainHandler.js")
+const handler = require("./handlers/mainHandler.js")
 
 const app = express()
 const port = 80

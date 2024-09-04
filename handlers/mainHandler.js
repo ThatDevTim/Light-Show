@@ -5,6 +5,7 @@ const debug = require("./debug.js")
 
 const audio = require("./audioHandler.js")
 const substation = require("./substationHandler.js")
+const uart = require("./uartHandler.js")
 
 let showName = "demo"
 
@@ -33,11 +34,11 @@ function load() {
 }
 
 function register() {
-    substation.sendUART("F-Register")
+    uart.send("F-Register")
 }
 
 function reset() {
-    substation.sendUART("F-Reset")
+    uart.send("F-Reset")
 
     playing = false
     frame = 0
@@ -52,7 +53,7 @@ function prepare() {
 
 function play() {
     audio.play()
-    substation.sendUART("F-Play")
+    uart.send("F-Play")
 
     playing = true
 
@@ -61,7 +62,7 @@ function play() {
 
 function pause() {
     audio.pause()
-    substation.sendUART("F-Pause")
+    uart.send("F-Pause")
 
     playing = false
 
