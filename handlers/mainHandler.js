@@ -1,11 +1,14 @@
 const fs = require("fs")
 const chalk = require("chalk")
+const path = require("path")
 
-const debug = require("./debug.js")
+const debug = require("./debugHandler.js")
 
 const audio = require("./audioHandler.js")
 const substation = require("./substationHandler.js")
 const uart = require("./uartHandler.js")
+
+let dictionaryPath = path.join(__dirname, "../substationDictionary.json")
 
 let showName = "demo"
 
@@ -25,7 +28,7 @@ let substationList = []
 function load() {
     substationList = []
 
-    let substationDictionary = fs.readFileSync(__dirname + "/substationDictionary.json")
+    let substationDictionary = fs.readFileSync(dictionaryPath)
     substationDictionary = JSON.parse(substationDictionary)
 
     Object.keys(substationDictionary).forEach(substationIP => {
@@ -83,7 +86,7 @@ function loop() {
         lastFrame = newFrame
         frame = newFrame
 
-        let endFrame = fs.readFileSync(__dirname + `/shows/${showName}/info.json`, "utf-8")
+        let endFrame = fs.readFileSync(dictionaryPath, "utf-8")
         endFrame = JSON.parse(endFrame)["length"]
 
         if (frame == endFrame) {

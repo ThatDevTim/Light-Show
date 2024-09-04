@@ -1,7 +1,7 @@
 const fs = require("fs")
 const http = require("http")
 
-const debug = require("./debug.js")
+const debug = require("./debugHandler.js")
 
 let initialFrameSend = Number(process.env.INITIALFRAMESEND)
 

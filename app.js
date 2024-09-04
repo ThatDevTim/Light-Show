@@ -32,7 +32,7 @@ app.get("/preview", (req, res) => {
 })
 
 app.get("/register", (req, res) => {
-    let substationDictionary = fs.readFileSync(__dirname + "/substationDictionary.json")
+    let substationDictionary = fs.readFileSync(__dirname + "../substationDictionary.json")
     substationDictionary = JSON.parse(substationDictionary)
 
     let ip = req.ip
