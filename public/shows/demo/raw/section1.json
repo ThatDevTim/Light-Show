@@ -1,0 +1,10 @@
+[
+    {
+        "details": { "name": "", "color": "" },
+        "type": "trail",
+        "range": {"start": 1, "end": 20},
+        "life": 0,
+        "color": {"hue": 1, "saturation": 100, "value": 100},
+        "frame": {"start": 1, "end": 2}
+    }
+]
