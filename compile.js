@@ -105,6 +105,7 @@ function trail(instruction) {
     let range = instruction.range
     let color = instruction.color
     let life = instruction.life
+    let decay = instruction.decay
     let frame = instruction.frame
 
     let totalLength = (range.end - range.start) + 1
@@ -129,7 +130,39 @@ function trail(instruction) {
         insertData(frame.start + index, compiledInstruction)
 
         if (life != 0) {
-            // Decay here
+            let compiledInstruction = [
+                "range",
+                [start, end],
+                [0, 0, 0]
+            ]
+    
+            insertData(frame.start + index + life, compiledInstruction)
+
+            if (decay != 0 && decay != 1) {
+                let startDecay = Math.round(frame.start + index + ((life * decay)))
+                let endDecay = frame.start + index + life
+
+                let decayDuration = endDecay - startDecay
+
+                let decayFactor = color.value / decayDuration
+
+                console.log(startDecay, endDecay, decayDuration, decayFactor)
+
+
+                for (let index = 1; index <= decayDuration; index++) {
+                    let compiledInstruction = [
+                        "range",
+                        [start, end],
+                        [
+                            toByte(color.hue / 360),
+                            toByte(color.saturation / 100),
+                            toByte((color.value - (decayFactor * index)) / 100)
+                        ]
+                    ]
+            
+                    insertData(frame.start + index + life, compiledInstruction)
+                }
+            }
         }
     }
 
