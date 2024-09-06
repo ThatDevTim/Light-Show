@@ -26,7 +26,11 @@ function set(instruction) {
         let compiledInstruction = [
             "range",
             [range.start, range.end],
-            [toByte(color.hue / 360), toByte(color.saturation / 100), toByte(color.value / 100)]
+            [
+                toByte(color.hue / 360),
+                toByte(color.saturation / 100),
+                toByte(color.value / 100)
+            ]
         ]
 
         insertData(frame, compiledInstruction)
@@ -44,7 +48,7 @@ function transform(instruction) {
     let sChange = color.end.saturation - color.start.saturation
     let vChange = color.end.value - color.start.value
 
-    let duration = frame[1] - frame[0]
+    let duration = frame.end - frame.start
 
     for (let index = 0; index <= duration; index++) {
         let hOffset = (index / duration) * hChange
@@ -53,7 +57,7 @@ function transform(instruction) {
         
         let compiledInstruction = [
             "range",
-            range,
+            [range.start, range.end],
             [
                 toByte((color.start.hue + hOffset) / 360),
                 toByte((color.start.saturation + sOffset) / 360),
@@ -64,7 +68,7 @@ function transform(instruction) {
         insertData(frame[0] + index, compiledInstruction)
     }
 
-    console.log(`${chalk.gray("[~]")} Transformed pixels ${range[0]} to ${range[1]} to from (${color[0]}) to (${color[1]}) at between frame ${frame[0]} and ${frame[1]}!`)
+    console.log(`${chalk.gray("[~]")} Transformed pixels ${range.start} to ${range.end} to from (${color[0]}) to (${color[1]}) at between frame ${frame[0]} and ${frame[1]}!`)
 }
 
 function segment(instruction) {
@@ -97,7 +101,42 @@ function segment(instruction) {
     console.log(`${chalk.gray("[~]")} Segmented pixels ${range[0]} to ${range[1]} into ${color.length} colors at frame ${frame}!`)
 }
 
-let filePath = __dirname + `/shows/${show}`
+function trail(instruction) {
+    let range = instruction.range
+    let color = instruction.color
+    let life = instruction.life
+    let frame = instruction.frame
+
+    let totalLength = (range.end - range.start) + 1
+    let duration = (frame.end - frame.start) + 1
+
+    let changePerFrame = totalLength / duration
+
+    for (let index = 0; index <= (duration - 1); index++) { 
+        let start = Math.round(range.start + (changePerFrame * index))
+        let end = Math.round((start + changePerFrame) - 1)
+
+        let compiledInstruction = [
+            "range",
+            [start, end],
+            [
+                toByte(color.hue / 360),
+                toByte(color.saturation / 100),
+                toByte(color.value / 100)
+            ]
+        ]
+
+        insertData(frame.start + index, compiledInstruction)
+
+        if (life != 0) {
+            // Decay here
+        }
+    }
+
+    console.log(`${chalk.gray("[~]")} Trailed pixels ${range.start} to ${range.end} to (${color.hue}, ${color.saturation}, ${color.value}) with a life of ${life} between frame ${frame.start} and ${frame.end}!`)
+}
+
+let filePath = __dirname + `/public/shows/${show}`
 let fileList = fs.readdirSync(filePath + "/raw")
 let sections = []
 
@@ -117,6 +156,7 @@ sections.forEach((section) => {
         if (instruction.type == "set") set(instruction)
         if (instruction.type == "transform") transform(instruction)
         if (instruction.type == "segment") segment(instruction)
+        if (instruction.type == "trail") trail(instruction)
     })
 
     frameData = JSON.stringify(frameData)

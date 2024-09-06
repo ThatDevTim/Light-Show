@@ -4,9 +4,9 @@ const chalk = require("chalk")
 
 require("dotenv").config()
 
-const debug = require("./debug.js")
+const debug = require("./handlers/debugHandler.js")
 
-const handler = require("./mainHandler.js")
+const handler = require("./handlers/mainHandler.js")
 
 const app = express()
 const port = 80
@@ -32,7 +32,7 @@ app.get("/preview", (req, res) => {
 })
 
 app.get("/register", (req, res) => {
-    let substationDictionary = fs.readFileSync(__dirname + "/substationDictionary.json")
+    let substationDictionary = fs.readFileSync(__dirname + "../substationDictionary.json")
     substationDictionary = JSON.parse(substationDictionary)
 
     let ip = req.ip
