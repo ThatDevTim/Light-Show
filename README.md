@@ -48,7 +48,7 @@ If a step only takes place in one frame, the `frame` value will be a positive in
 }
 ```
 
-**Segment**
+**Segment**\
 `length` takes a positive integer value. If `length` is not present or set to `0`, the pixels will be divided into the number of items in the `color` array.
 ```
 {
@@ -65,7 +65,7 @@ If a step only takes place in one frame, the `frame` value will be a positive in
 }
 ```
 
-**Trail**
+**Trail**\
 `life` takes a number of frames represented as a positive integer value. If `life` is not present or set to `0`, the life will be assumed to be `infinite` and pixels will not revert to black. `decay` is a positive integer between `0` and `100` that represents the fraction of the `life` in which the pixels will start to decay. If `decay` is set to `100`, the color will start to fade immediately; if set to `0` the pixels will not fade and disapear after their lifespan.
 ```
 {
