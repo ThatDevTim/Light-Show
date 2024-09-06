@@ -1,20 +1,20 @@
 {
-  "name": "light-show",
-  "version": "0.2.0",
-  "description": "Code to create, run, and manage light shows. This code should be deployed as a part of the Superstation.",
-  "main": "app.js",
-  "scripts": {
-    "start": "node app.js",
-    "compile": "node compile.js"
-  },
-  "author": "Tim Whitehead",
-  "license": "ISC",
-  "dependencies": {
+    "name": "light-show",
+    "version": "0.2.0",
+    "description": "Code to create, run, and manage light shows. This code should be deployed as a part of the Superstation.",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js",
+        "compile": "node compile.js"
+    },
+    "author": "Tim Whitehead",
+    "license": "ISC",
+    "dependencies": {
     "chalk": "^4.1.2",
-    "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "fs": "^0.0.1-security",
-    "path": "^0.12.7",
-    "serialport": "^12.0.0"
-  }
+        "dotenv": "^16.4.5",
+        "express": "^4.19.2",
+        "fs": "^0.0.1-security",
+        "path": "^0.12.7",
+        "serialport": "^12.0.0"
+    }
 }

@@ -108,7 +108,7 @@ function trail(instruction) {
     let range = instruction.range
     let color = instruction.color
     let life = instruction.life
-    let decay = instruction.decay
+    let decay = instruction.decay / 100
     let frame = instruction.frame
 
     let totalLength = (range.end - range.start) + 1
