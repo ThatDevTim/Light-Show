@@ -1,11 +1,13 @@
 [
     {
         "details": { "name": "", "color": "" },
-        "type": "trail",
-        "range": {"start": 1, "end": 20},
-        "life": 5,
-        "decay": 0.5,
-        "color": {"hue": 1, "saturation": 100, "value": 100},
-        "frame": {"start": 1, "end": 20}
+        "type": "segment",
+        "range": {"start": 1, "end": 150},
+        "length": 1,
+        "color": [
+            {"hue": 0, "saturation": 0, "value": 0},
+            {"hue": 180, "saturation": 1, "value": 1}
+        ],
+        "frame": 1
     }
 ]

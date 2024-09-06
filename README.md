@@ -53,8 +53,8 @@ JSON format for how the show data should be written.
         {"hue": 0, "saturation": 0, "value": 0},
         {"hue": 0, "saturation": 0, "value": 0},
         ...
-    ]
-    "frame": {"start": 0, "end": 0}
+    ],
+    "frame": 0
 }
 ```
 

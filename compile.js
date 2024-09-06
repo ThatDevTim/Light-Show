@@ -60,8 +60,8 @@ function transform(instruction) {
             [range.start, range.end],
             [
                 toByte((color.start.hue + hOffset) / 360),
-                toByte((color.start.saturation + sOffset) / 360),
-                toByte((color.start.value + vOffset) / 360),
+                toByte((color.start.saturation + sOffset) / 100),
+                toByte((color.start.value + vOffset) / 100),
             ]
         ]
 
@@ -76,29 +76,32 @@ function segment(instruction) {
     let color = instruction.color
     let frame = instruction.frame
 
-    let numTotal = (range[1] - range[0]) + 1
+    let numTotal = (range.end - range.start) + 1
     let numPer = instruction.length || numTotal / color.length
     let numSegments = numTotal / numPer
 
     for (let index = 0; index < numSegments; index++) {
-        let start = range[0] + (numPer * index)
-        let finish = range[0] + (numPer * (index + 1)) - 1
+        let start = range.start + (numPer * index)
+        let finish = range.start + (numPer * (index + 1)) - 1
 
-        if (finish > range[1]) finish = range[1]
+        if (finish > range.end) finish = range.end
 
         let setColor = color[index % color.length]
-        setColor = [Math.round((setColor[0] / 360) * 1000) / 1000, Math.round(setColor[1] * 1000) / 1000, Math.round(setColor[2] * 1000) / 1000]
 
         let compiledInstruction = [
             "range",
             [start, finish],
-            setColor
+            [
+                toByte(setColor.hue / 360),
+                toByte(setColor.saturation / 100),
+                toByte(setColor.value / 100)
+            ]
         ]
 
         insertData(frame, compiledInstruction)
     }
 
-    console.log(`${chalk.gray("[~]")} Segmented pixels ${range[0]} to ${range[1]} into ${color.length} colors at frame ${frame}!`)
+    console.log(`${chalk.gray("[~]")} Segmented pixels ${range.start} to ${range.end} into ${color.length} colors at frame ${frame}!`)
 }
 
 function trail(instruction) {
