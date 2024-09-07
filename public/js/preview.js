@@ -64,10 +64,18 @@ function loop() {
                         let split = element.id.split("-")
                         if (split[0] == "substation1") {
                             if (inRange(split[1])) {
-                                element.style.backgroundColor = `hsl(${0}, ${step[2][1] * 100}%, ${step[2][2] * 50}%)`
+                                element.style.backgroundColor = `hsl(${(step[2][0] / 255) * 360}, ${(step[2][1] / 255) * 100}%, ${(step[2][2] / 255) * 50}%)`
                             }
                         }
                     }
+                }
+
+                if (step[0] == "list") {
+                    step[1].forEach((pixel) => {
+                        let element = document.getElementById("substation1-" + pixel)
+                        if (!element) return
+                        element.style.backgroundColor = `hsl(${(step[2][0] / 255) * 360}, ${(step[2][1] / 255) * 100}%, ${(step[2][2] / 255) * 50}%)`
+                    })
                 }
             })
         }
@@ -85,10 +93,18 @@ function loop() {
                         let split = element.id.split("-")
                         if (split[0] == "substation2") {
                             if (inRange(split[1])) {
-                                element.style.backgroundColor = `hsl(${0}, ${step[2][1] * 100}%, ${step[2][2] * 50}%)`
+                                element.style.backgroundColor = `hsl(${(step[2][0] / 255) * 360}, ${(step[2][1] / 255) * 100}%, ${(step[2][2] / 255) * 50}%)`
                             }
                         }
                     }
+                }
+
+                if (step[0] == "list") {
+                    step[1].forEach((pixel) => {
+                        let element = document.getElementById("substation2-" + pixel)
+                        if (!element) return
+                        element.style.backgroundColor = `hsl(${(step[2][0] / 255) * 360}, ${(step[2][1] / 255) * 100}%, ${(step[2][2] / 255) * 50}%)`
+                    })
                 }
             })
         }
@@ -96,24 +112,26 @@ function loop() {
 }
 
 async function load() {
-    let data = await (await fetch("/shows/plot.json")).json()
+    let data = await (await fetch("/public/shows/plot.json")).json()
     data.forEach(pixel => {
         let newPixel = document.createElement("div")
         newPixel.id = pixel["id"]
         newPixel.classList = "pixel"
-        newPixel.style.left = (pixel["x"] * .5) + "px"
-        newPixel.style.top = (pixel["y"] * .5) + "px"
+        newPixel.style.left = (pixel["x"] * 1) + "px"
+        newPixel.style.top = (pixel["y"] * 1) + "px"
         document.body.appendChild(newPixel)
     })
 
-    endFrame = await (await fetch("/shows/demo/info.json")).json()
+    endFrame = await (await fetch("/public/shows/halloween/info.json")).json()
     endFrame = endFrame["length"]
 
-    substation1 = await (await fetch("/shows/demo/compiled/section1/compact.json")).json()
-    substation2 = await (await fetch("/shows/demo/compiled/section2/compact.json")).json()
+    substation1 = await (await fetch("/public/shows/halloween/compiled/section1/compact.json")).json()
+    substation2 = await (await fetch("/public/shows/halloween/compiled/section2/compact.json")).json()
 
     startTime = Date.now()
-    // loop()
+    loop()
+
+    console.log("here")
 
     //color("hotpink")
 }

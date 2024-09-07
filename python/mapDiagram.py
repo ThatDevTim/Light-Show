@@ -45,70 +45,61 @@ def identifyPixels(image_path):
 
 plot = []
 
-json_path = './shows/plot.json'
+json_path = './public/shows/plot.json'
 image_path = './diagrams/arches_1.png'
 pixels = identifyPixels(image_path)
 sortedPixels = sortX(pixels, True)
 pixelID, count = addID(sortedPixels, "substation1-", 1)
 plot = plot + pixelID
 
-json_path = './shows/plot.json'
 image_path = './diagrams/tree_1.png'
 pixels = identifyPixels(image_path)
 sortedPixels = sortY(pixels, True)
 pixelID, count = addID(sortedPixels, "substation1-", count + 1)
 plot = plot + pixelID
 
-json_path = './shows/plot.json'
 image_path = './diagrams/arches_2.png'
 pixels = identifyPixels(image_path)
 sortedPixels = sortX(pixels, True)
 pixelID, count = addID(sortedPixels, "substation2-", 1)
 plot = plot + pixelID
 
-json_path = './shows/plot.json'
 image_path = './diagrams/tree_2.png'
 pixels = identifyPixels(image_path)
 sortedPixels = sortY(pixels, True)
 pixelID, count = addID(sortedPixels, "substation2-", count + 1)
 plot = plot + pixelID
 
-json_path = './shows/plot.json'
 image_path = './diagrams/window_1_1.png'
 pixels = identifyPixels(image_path)
 sortedPixels = sortX(pixels, False)
 pixelID, count = addID(sortedPixels, "substation3-", 1)
 plot = plot + pixelID
 
-json_path = './shows/plot.json'
 image_path = './diagrams/window_1_2.png'
 pixels = identifyPixels(image_path)
 sortedPixels = sortY(pixels, True)
 pixelID, count = addID(sortedPixels, "substation3-", count + 1)
 plot = plot + pixelID
 
-json_path = './shows/plot.json'
 image_path = './diagrams/window_1_3.png'
 pixels = identifyPixels(image_path)
 sortedPixels = sortX(pixels, True)
 pixelID, count = addID(sortedPixels, "substation3-", count + 1)
 plot = plot + pixelID
 
-json_path = './shows/plot.json'
 image_path = './diagrams/window_2_1.png'
 pixels = identifyPixels(image_path)
 sortedPixels = sortX(pixels, True)
 pixelID, count = addID(sortedPixels, "substation3-", count + 1)
 plot = plot + pixelID
 
-json_path = './shows/plot.json'
 image_path = './diagrams/window_2_2.png'
 pixels = identifyPixels(image_path)
 sortedPixels = sortY(pixels, True)
 pixelID, count = addID(sortedPixels, "substation3-", count + 1)
 plot = plot + pixelID
 
-json_path = './shows/plot.json'
 image_path = './diagrams/window_2_3.png'
 pixels = identifyPixels(image_path)
 sortedPixels = sortX(pixels, False)

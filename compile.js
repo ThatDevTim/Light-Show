@@ -1,7 +1,7 @@
 const fs = require("fs")
 const chalk = require("chalk")
 
-let show = "demo"
+let show = "halloween"
 
 let frameData = {}
 
@@ -36,7 +36,7 @@ function set(instruction) {
         insertData(frame, compiledInstruction)
     }
 
-    console.log(`${chalk.gray("[~]")} Set pixels ${range[0]} to ${range[1]} to (${color}) at frame ${frame}!`)
+    console.log(`${chalk.gray("[~]")} Set pixels ${range.start} to ${range.end} to (${color.hue}, ${color.saturation}, ${color.value}) at frame ${frame}!`)
 }
 
 function transform(instruction) {
@@ -65,10 +65,10 @@ function transform(instruction) {
             ]
         ]
 
-        insertData(frame[0] + index, compiledInstruction)
+        insertData(frame.start + index, compiledInstruction)
     }
 
-    console.log(`${chalk.gray("[~]")} Transformed pixels ${range.start} to ${range.end} to from (${color[0]}) to (${color[1]}) at between frame ${frame[0]} and ${frame[1]}!`)
+    console.log(`${chalk.gray("[~]")} Transformed pixels ${range.start} to ${range.end} to from (${color}) to (${color[1]}) at between frame ${frame[0]} and ${frame[1]}!`)
 }
 
 function segment(instruction) {
@@ -155,9 +155,6 @@ function trail(instruction) {
 
                 let decayFactor = color.value / decayDuration
 
-                console.log(decay, startDecay, endDecay, decayDuration, decayFactor)
-
-
                 for (let index = 1; index < decayDuration; index++) {
                     let compiledInstruction = [
                         "range",
@@ -197,8 +194,6 @@ function twinkle(instruction) {
             toTwinkle.push(Math.round(Math.random() * length) + range.start)
         }
 
-        console.log(toTwinkle)
-
         let compiledInstruction = [
             "list",
             toTwinkle,
@@ -227,9 +222,6 @@ function twinkle(instruction) {
                 let decayDuration = endDecay - startDecay
 
                 let decayFactor = color.value / decayDuration
-
-                console.log(decay, startDecay, endDecay, decayDuration, decayFactor)
-
 
                 for (let index = 1; index < decayDuration; index++) {
                     let compiledInstruction = [
