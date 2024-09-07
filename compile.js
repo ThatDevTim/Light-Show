@@ -109,6 +109,7 @@ function trail(instruction) {
     let color = instruction.color
     let life = instruction.life
     let decay = 1 - (instruction.decay / 100)
+    let reverse = instruction.reverse
     let frame = instruction.frame
 
     let totalLength = (range.end - range.start) + 1
@@ -119,6 +120,11 @@ function trail(instruction) {
     for (let index = 0; index <= (duration - 1); index++) { 
         let start = Math.round(range.start + (changePerFrame * index))
         let end = Math.round((start + changePerFrame) - 1)
+
+        if (reverse) {
+            end = Math.round(range.end - (changePerFrame * index))
+            start = Math.round((end - changePerFrame) + 1)
+        }
 
         let compiledInstruction = [
             "range",

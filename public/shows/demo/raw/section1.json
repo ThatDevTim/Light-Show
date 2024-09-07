@@ -1,12 +1,12 @@
 [
     {
         "details": { "name": "", "color": "" },
-        "type": "twinkle",
-        "range": {"start": 1, "end": 150},
-        "life": 5,
-        "decay": 100,
-        "rate": 5,
+        "type": "trail",
+        "range": {"start": 1, "end": 20},
+        "life": 0,
+        "decay": 0,
+        "reverse": true,
         "color": {"hue": 0, "saturation": 0, "value": 100},
-        "frame": {"start": 1, "end": 300}
+        "frame": {"start": 1, "end": 10}
     }
 ]

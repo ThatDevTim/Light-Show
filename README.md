@@ -76,6 +76,7 @@ If a step only takes place in one frame, the `frame` value will be a positive in
     "range": {"start": 0, "end": 0},
     "life": 0,
     "decay": 0,
+    "reverse": false,
     "color": {"hue": 0, "saturation": 0, "value": 0},
     "frame": {"start": 0, "end": 0}
 }
