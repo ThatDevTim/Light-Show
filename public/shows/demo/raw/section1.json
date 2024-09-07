@@ -1,13 +1,12 @@
 [
     {
         "details": { "name": "", "color": "" },
-        "type": "segment",
+        "type": "twinkle",
         "range": {"start": 1, "end": 150},
-        "length": 1,
-        "color": [
-            {"hue": 0, "saturation": 0, "value": 0},
-            {"hue": 180, "saturation": 1, "value": 1}
-        ],
-        "frame": 1
+        "life": 5,
+        "decay": 100,
+        "rate": 5,
+        "color": {"hue": 0, "saturation": 0, "value": 100},
+        "frame": {"start": 1, "end": 300}
     }
 ]

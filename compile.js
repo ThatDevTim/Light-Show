@@ -108,7 +108,7 @@ function trail(instruction) {
     let range = instruction.range
     let color = instruction.color
     let life = instruction.life
-    let decay = instruction.decay / 100
+    let decay = 1 - (instruction.decay / 100)
     let frame = instruction.frame
 
     let totalLength = (range.end - range.start) + 1
@@ -141,7 +141,7 @@ function trail(instruction) {
     
             insertData(frame.start + index + life, compiledInstruction)
 
-            if (decay != 0 && decay != 1) {
+            if (decay != 1) {
                 let startDecay = Math.round(frame.start + index + ((life * decay)))
                 let endDecay = frame.start + index + life
 
@@ -149,10 +149,10 @@ function trail(instruction) {
 
                 let decayFactor = color.value / decayDuration
 
-                console.log(startDecay, endDecay, decayDuration, decayFactor)
+                console.log(decay, startDecay, endDecay, decayDuration, decayFactor)
 
 
-                for (let index = 1; index <= decayDuration; index++) {
+                for (let index = 1; index < decayDuration; index++) {
                     let compiledInstruction = [
                         "range",
                         [start, end],
@@ -163,7 +163,80 @@ function trail(instruction) {
                         ]
                     ]
             
-                    insertData(frame.start + index + life, compiledInstruction)
+                    insertData(startDecay + index, compiledInstruction)
+                }
+            }
+        }
+    }
+
+    console.log(`${chalk.gray("[~]")} Trailed pixels ${range.start} to ${range.end} to (${color.hue}, ${color.saturation}, ${color.value}) with a life of ${life} between frame ${frame.start} and ${frame.end}!`)
+}
+
+function twinkle(instruction) {
+    let range = instruction.range
+    let color = instruction.color
+    let life = instruction.life
+    let decay = 1 - (instruction.decay / 100)
+    let rate = instruction.rate
+    let frame = instruction.frame
+
+    let length = (range.end - range.start) + 1
+    let duration = (frame.end - frame.start) + 1
+
+
+    for (let index = 0; index <= (duration - 1); index++) { 
+        let toTwinkle = []
+
+        for (let twinkled = 1; twinkled <= rate; twinkled++) {
+            toTwinkle.push(Math.round(Math.random() * length) + range.start)
+        }
+
+        console.log(toTwinkle)
+
+        let compiledInstruction = [
+            "list",
+            toTwinkle,
+            [
+                toByte(color.hue / 360),
+                toByte(color.saturation / 100),
+                toByte(color.value / 100)
+            ]
+        ]
+
+        insertData(frame.start + index, compiledInstruction)
+
+        if (life && life != 0) {
+            let compiledInstruction = [
+                "list",
+                toTwinkle,
+                [0, 0, 0]
+            ]
+    
+            insertData(frame.start + index + life, compiledInstruction)
+
+            if (decay != 1) {
+                let startDecay = Math.round(frame.start + index + ((life * decay)))
+                let endDecay = frame.start + index + life
+
+                let decayDuration = endDecay - startDecay
+
+                let decayFactor = color.value / decayDuration
+
+                console.log(decay, startDecay, endDecay, decayDuration, decayFactor)
+
+
+                for (let index = 1; index < decayDuration; index++) {
+                    let compiledInstruction = [
+                        "list",
+                        toTwinkle,
+                        [
+                            toByte(color.hue / 360),
+                            toByte(color.saturation / 100),
+                            toByte((color.value - (decayFactor * index)) / 100)
+                        ]
+                    ]
+            
+                    insertData(startDecay + index, compiledInstruction)
                 }
             }
         }
@@ -193,6 +266,7 @@ sections.forEach((section) => {
         if (instruction.type == "transform") transform(instruction)
         if (instruction.type == "segment") segment(instruction)
         if (instruction.type == "trail") trail(instruction)
+        if (instruction.type == "twinkle") twinkle(instruction)
     })
 
     frameData = JSON.stringify(frameData)

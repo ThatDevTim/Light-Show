@@ -80,6 +80,22 @@ If a step only takes place in one frame, the `frame` value will be a positive in
     "frame": {"start": 0, "end": 0}
 }
 ```
+
+**Twinkle**
+
+`life` takes a number of frames represented as a positive integer value. If `life` is not present or set to `0`, the life will be assumed to be `infinite` and pixels will not revert to black. `decay` is a positive integer between `0` and `100` that represents the fraction of the `life` in which the pixels will start to decay. If `decay` is set to `100`, the color will start to fade immediately; if set to `0` the pixels will not fade and disapear after their lifespan. `rate` is a positive integer value that represents the number of new twinkles per frame.
+```
+{
+    "details": { "name": "", "color": "" },
+    "type": "twinkle",
+    "range": {"start": 0, "end": 0},
+    "life": 0,
+    "decay": 0,
+    "rate": 0,
+    "color": {"hue": 0, "saturation": 0, "value": 0},
+    "frame": {"start": 0, "end": 0}
+}
+```
 </details>
 
 ## Frame Data
