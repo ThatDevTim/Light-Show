@@ -11,7 +11,7 @@
         "type": "twinkle",
         "range": {"start": 1, "end": 1100},
         "life": 10,
-        "decay": 100,
+        "decay": 50,
         "rate": 20,
         "color": {"hue": 0, "saturation": 0, "value": 100},
         "frame": {"start": 1, "end": 1150}

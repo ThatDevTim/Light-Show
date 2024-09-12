@@ -1,0 +1,29 @@
+[
+    {
+        "details": { "name": "Pre-show Blackout", "color": "" },
+        "type": "set",
+        "range": {"start": 1, "end": 609},
+        "color":  {"hue": 0, "saturation": 0, "value": 0},
+        "frame": 0
+    },
+    {
+        "details": { "name": "", "color": "" },
+        "type": "twinkle",
+        "range": {"start": 1, "end": 609},
+        "life": 10,
+        "decay": 50,
+        "rate": 20,
+        "color": {"hue": 0, "saturation": 0, "value": 100},
+        "frame": {"start": 1, "end": 1150}
+    },
+    {
+        "details": { "name": "", "color": "" },
+        "type": "transform",
+        "range": {"start": 1, "end": 609},
+        "color": {
+            "start": {"hue": 0, "saturation": 0, "value": 100},
+            "end": {"hue": 0, "saturation": 0, "value": 0}
+        },
+        "frame": {"start": 1161, "end": 1240}
+    }
+]

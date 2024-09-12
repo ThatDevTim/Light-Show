@@ -106,5 +106,41 @@ sortedPixels = sortX(pixels, False)
 pixelID, count = addID(sortedPixels, "substation3-", count + 1)
 plot = plot + pixelID
 
+image_path = './diagrams/bat_1_1.png'
+pixels = identifyPixels(image_path)
+sortedPixels = sortX(pixels, True)
+pixelID, count = addID(sortedPixels, "substation3-", count + 1)
+plot = plot + pixelID
+
+image_path = './diagrams/bat_1_2.png'
+pixels = identifyPixels(image_path)
+sortedPixels = sortX(pixels, False)
+pixelID, count = addID(sortedPixels, "substation3-", count + 1)
+plot = plot + pixelID
+
+image_path = './diagrams/bat_2_1.png'
+pixels = identifyPixels(image_path)
+sortedPixels = sortX(pixels, True)
+pixelID, count = addID(sortedPixels, "substation3-", count + 1)
+plot = plot + pixelID
+
+image_path = './diagrams/bat_2_2.png'
+pixels = identifyPixels(image_path)
+sortedPixels = sortX(pixels, False)
+pixelID, count = addID(sortedPixels, "substation3-", count + 1)
+plot = plot + pixelID
+
+image_path = './diagrams/bat_3_1.png'
+pixels = identifyPixels(image_path)
+sortedPixels = sortX(pixels, True)
+pixelID, count = addID(sortedPixels, "substation3-", count + 1)
+plot = plot + pixelID
+
+image_path = './diagrams/bat_3_2.png'
+pixels = identifyPixels(image_path)
+sortedPixels = sortX(pixels, False)
+pixelID, count = addID(sortedPixels, "substation3-", count + 1)
+plot = plot + pixelID
+
 print(f"Total white pixels: {ledCount}")
 saveJSON(plot, json_path)

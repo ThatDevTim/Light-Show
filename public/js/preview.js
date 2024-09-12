@@ -25,6 +25,7 @@ let lastFrame = 0
 
 let substation1
 let substation2
+let substation3
 
 let endFrame
 
@@ -108,6 +109,35 @@ function loop() {
                 }
             })
         }
+
+        if (substation3[String(frame)]) {
+            let frameData = substation3[String(frame)]
+            frameData.forEach(step => {
+                if (step[0] == "range") {
+                    function inRange(num) {
+                        if (num >= step[1][0] && num <= step[1][1]) return true
+                        return false
+                    }
+                    for (let pixel = 0; pixel < pixels.length; pixel++) {
+                        let element = pixels[pixel]
+                        let split = element.id.split("-")
+                        if (split[0] == "substation3") {
+                            if (inRange(split[1])) {
+                                element.style.backgroundColor = `hsl(${(step[2][0] / 255) * 360}, ${(step[2][1] / 255) * 100}%, ${(step[2][2] / 255) * 50}%)`
+                            }
+                        }
+                    }
+                }
+
+                if (step[0] == "list") {
+                    step[1].forEach((pixel) => {
+                        let element = document.getElementById("substation3-" + pixel)
+                        if (!element) return
+                        element.style.backgroundColor = `hsl(${(step[2][0] / 255) * 360}, ${(step[2][1] / 255) * 100}%, ${(step[2][2] / 255) * 50}%)`
+                    })
+                }
+            })
+        }
     }, 0)
 }
 
@@ -117,8 +147,8 @@ async function load() {
         let newPixel = document.createElement("div")
         newPixel.id = pixel["id"]
         newPixel.classList = "pixel"
-        newPixel.style.left = (pixel["x"] * 1) + "px"
-        newPixel.style.top = (pixel["y"] * 1) + "px"
+        newPixel.style.left = (pixel["x"] * .75) + "px"
+        newPixel.style.top = (pixel["y"] * .75) + "px"
         document.body.appendChild(newPixel)
     })
 
@@ -127,6 +157,7 @@ async function load() {
 
     substation1 = await (await fetch("/public/shows/halloween/compiled/section1/compact.json")).json()
     substation2 = await (await fetch("/public/shows/halloween/compiled/section2/compact.json")).json()
+    substation3 = await (await fetch("/public/shows/halloween/compiled/section3/compact.json")).json()
 
     startTime = Date.now()
     loop()
