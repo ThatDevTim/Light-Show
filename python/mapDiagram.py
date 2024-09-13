@@ -142,9 +142,75 @@ sortedPixels = sortX(pixels, False)
 pixelID, count = addID(sortedPixels, "substation3-", count + 1)
 plot = plot + pixelID
 
-image_path = './diagrams/tombstones.png'
+image_path = './diagrams/tombstone_1_1.png'
 pixels = identifyPixels(image_path)
-sortedPixels = sortX(pixels, False)
+sortedPixels = sortY(pixels, True)
+pixelID, count = addID(sortedPixels, "substation3-", count + 1)
+plot = plot + pixelID
+
+image_path = './diagrams/tombstone_1_2.png'
+pixels = identifyPixels(image_path)
+sortedPixels = sortY(pixels, False)
+pixelID, count = addID(sortedPixels, "substation3-", count + 1)
+plot = plot + pixelID
+
+image_path = './diagrams/tombstone_1_3.png'
+pixels = identifyPixels(image_path)
+sortedPixels = sortY(pixels, False)
+pixelID, count = addID(sortedPixels, "substation3-", count + 1)
+plot = plot + pixelID
+
+image_path = './diagrams/tombstone_2_1.png'
+pixels = identifyPixels(image_path)
+sortedPixels = sortY(pixels, True)
+pixelID, count = addID(sortedPixels, "substation3-", count + 1)
+plot = plot + pixelID
+
+image_path = './diagrams/tombstone_2_2.png'
+pixels = identifyPixels(image_path)
+sortedPixels = sortY(pixels, False)
+pixelID, count = addID(sortedPixels, "substation3-", count + 1)
+plot = plot + pixelID
+
+image_path = './diagrams/tombstone_2_3.png'
+pixels = identifyPixels(image_path)
+sortedPixels = sortY(pixels, False)
+pixelID, count = addID(sortedPixels, "substation3-", count + 1)
+plot = plot + pixelID
+
+image_path = './diagrams/tombstone_3_1.png'
+pixels = identifyPixels(image_path)
+sortedPixels = sortY(pixels, True)
+pixelID, count = addID(sortedPixels, "substation3-", count + 1)
+plot = plot + pixelID
+
+image_path = './diagrams/tombstone_3_2.png'
+pixels = identifyPixels(image_path)
+sortedPixels = sortY(pixels, False)
+pixelID, count = addID(sortedPixels, "substation3-", count + 1)
+plot = plot + pixelID
+
+image_path = './diagrams/tombstone_3_3.png'
+pixels = identifyPixels(image_path)
+sortedPixels = sortY(pixels, False)
+pixelID, count = addID(sortedPixels, "substation3-", count + 1)
+plot = plot + pixelID
+
+image_path = './diagrams/tombstone_4_1.png'
+pixels = identifyPixels(image_path)
+sortedPixels = sortY(pixels, True)
+pixelID, count = addID(sortedPixels, "substation3-", count + 1)
+plot = plot + pixelID
+
+image_path = './diagrams/tombstone_4_2.png'
+pixels = identifyPixels(image_path)
+sortedPixels = sortY(pixels, False)
+pixelID, count = addID(sortedPixels, "substation3-", count + 1)
+plot = plot + pixelID
+
+image_path = './diagrams/tombstone_4_3.png'
+pixels = identifyPixels(image_path)
+sortedPixels = sortY(pixels, False)
 pixelID, count = addID(sortedPixels, "substation3-", count + 1)
 plot = plot + pixelID
 
