@@ -142,5 +142,11 @@ sortedPixels = sortX(pixels, False)
 pixelID, count = addID(sortedPixels, "substation3-", count + 1)
 plot = plot + pixelID
 
+image_path = './diagrams/tombstones.png'
+pixels = identifyPixels(image_path)
+sortedPixels = sortX(pixels, False)
+pixelID, count = addID(sortedPixels, "substation3-", count + 1)
+plot = plot + pixelID
+
 print(f"Total white pixels: {ledCount}")
 saveJSON(plot, json_path)
