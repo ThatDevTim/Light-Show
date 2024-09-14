@@ -8,13 +8,23 @@
     },
     {
         "details": { "name": "", "color": "" },
-        "type": "twinkle",
+        "type": "trail",
         "range": {"start": 1, "end": 965},
-        "life": 10,
-        "decay": 50,
-        "rate": 20,
+        "life": 0,
+        "decay": 0,
+        "reverse": false,
         "color": {"hue": 0, "saturation": 0, "value": 100},
-        "frame": {"start": 1, "end": 1150}
+        "frame": {"start": 1, "end": 1100}
+    },
+    {
+        "details": { "name": "", "color": "" },
+        "type": "transform",
+        "range": {"start": 1, "end": 965},
+        "color": {
+            "start": {"hue": 0, "saturation": 0, "value": 100},
+            "end": {"hue": 0, "saturation": 0, "value": 0}
+        },
+        "frame": {"start": 1110, "end": 1160}
     },
     {
         "details": { "name": "", "color": "" },
