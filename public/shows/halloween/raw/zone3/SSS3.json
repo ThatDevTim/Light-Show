@@ -1,0 +1,69 @@
+[
+    {
+        "details": { "name": "Pre-show Blackout", "color": "" },
+        "type": "set",
+        "range": {"start": 1, "end": 965},
+        "color":  {"hue": 0, "saturation": 0, "value": 0},
+        "frame": 0
+    },
+    {
+        "details": { "name": "", "color": "" },
+        "type": "trail",
+        "range": {"start": 1, "end": 965},
+        "life": 0,
+        "decay": 0,
+        "reverse": false,
+        "color": {"hue": 0, "saturation": 0, "value": 100},
+        "frame": {"start": 1, "end": 1030}
+    },
+    {
+        "details": { "name": "", "color": "" },
+        "type": "transform",
+        "range": {"start": 1, "end": 965},
+        "color": {
+            "start": {"hue": 0, "saturation": 0, "value": 100},
+            "end": {"hue": 0, "saturation": 0, "value": 0}
+        },
+        "frame": {"start": 1062, "end": 1160}
+    },
+    {
+        "details": { "name": "", "color": "" },
+        "type": "transform",
+        "range": {"start": 1, "end": 965},
+        "color": {
+            "start": {"hue": 0, "saturation": 0, "value": 100},
+            "end": {"hue": 0, "saturation": 0, "value": 0}
+        },
+        "frame": {"start": 1161, "end": 1200}
+    },
+    {
+        "details": { "name": "", "color": "" },
+        "type": "transform",
+        "range": {"start": 473, "end": 600},
+        "color": {
+            "start": {"hue": 0, "saturation": 0, "value": 100},
+            "end": {"hue": 0, "saturation": 0, "value": 0}
+        },
+        "frame": {"start": 1189, "end": 1209}
+    },
+    {
+        "details": { "name": "", "color": "" },
+        "type": "transform",
+        "range": {"start": 1, "end": 236},
+        "color": {
+            "start": {"hue": 0, "saturation": 0, "value": 100},
+            "end": {"hue": 0, "saturation": 0, "value": 0}
+        },
+        "frame": {"start": 1199, "end": 1219}
+    },
+    {
+        "details": { "name": "", "color": "" },
+        "type": "transform",
+        "range": {"start": 237, "end": 472},
+        "color": {
+            "start": {"hue": 0, "saturation": 0, "value": 100},
+            "end": {"hue": 0, "saturation": 0, "value": 0}
+        },
+        "frame": {"start": 1219, "end": 1239}
+    }
+]

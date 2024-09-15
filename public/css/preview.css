@@ -17,8 +17,8 @@ body {
 }
 
 .pixel {
-    height: 2px;
-    width: 2px;
+    height: 1px;
+    width: 1px;
     background-color: black;
     position: absolute;
 }

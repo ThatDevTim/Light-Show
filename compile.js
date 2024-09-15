@@ -244,33 +244,32 @@ function twinkle(instruction) {
 }
 
 let filePath = __dirname + `/public/shows/${show}`
-let fileList = fs.readdirSync(filePath + "/raw")
-let sections = []
+let zones = fs.readdirSync(filePath + "/raw")
 
-fileList.forEach((section) => {
-    sections.push(section.split(".")[0])
-})
-
-sections.forEach((section) => {
-    console.log(chalk.yellow(`[=] Compiling ${chalk.underline(section)}`))
-
-    let data = fs.readFileSync(filePath + `/raw/${section}.json`, "utf-8")
-    data = JSON.parse(data)
+zones.forEach((zone) => {
+    console.log(chalk.yellow(`[=] Compiling ${chalk.underline(zone)}`))
 
     frameData = {}
 
-    data.forEach((instruction) => {
-        if (instruction.type == "set") set(instruction)
-        if (instruction.type == "transform") transform(instruction)
-        if (instruction.type == "segment") segment(instruction)
-        if (instruction.type == "trail") trail(instruction)
-        if (instruction.type == "twinkle") twinkle(instruction)
+    let raws = fs.readdirSync(filePath + `/raw/${zone}`)
+
+    raws.forEach((raw) => {
+        let data = fs.readFileSync(filePath + `/raw/${zone}/${raw}`, "utf-8")
+        data = JSON.parse(data)
+    
+        data.forEach((instruction) => {
+            if (instruction.type == "set") set(instruction)
+            if (instruction.type == "transform") transform(instruction)
+            if (instruction.type == "segment") segment(instruction)
+            if (instruction.type == "trail") trail(instruction)
+            if (instruction.type == "twinkle") twinkle(instruction)
+        })
     })
 
     frameData = JSON.stringify(frameData)
 
-    fs.mkdirSync(filePath + `/compiled/${section}`, { recursive: true })
-    fs.writeFileSync(filePath + `/compiled/${section}/compact.json`, frameData)
+    fs.mkdirSync(filePath + `/compiled/${zone}`, { recursive: true })
+    fs.writeFileSync(filePath + `/compiled/${zone}/compact.json`, frameData)
 
-    console.log(`${chalk.green("[+]")} Done Compiling ${chalk.underline(section)}`)
+    console.log(`${chalk.green("[+]")} Done Compiling ${chalk.underline(zone)}`)
 })

@@ -1,0 +1,849 @@
+[
+    {
+        "details": { "name": "Pre-show Blackout", "color": "" },
+        "type": "set",
+        "range": {"start": 1, "end": 1100},
+        "color":  {"hue": 0, "saturation": 0, "value": 0},
+        "frame": 0
+    },
+    {
+        "details": { "name": "", "color": "" },
+        "type": "twinkle",
+        "range": {"start": 1, "end": 1100},
+        "life": 10,
+        "decay": 100,
+        "rate": 20,
+        "color": {"hue": 0, "saturation": 0, "value": 100},
+        "frame": {"start": 1, "end": 1150}
+    },
+    {
+        "details": { "name": "", "color": "" },
+        "type": "transform",
+        "range": {"start": 1, "end": 1100},
+        "color": {
+            "start": {"hue": 0, "saturation": 0, "value": 100},
+            "end": {"hue": 0, "saturation": 0, "value": 0}
+        },
+        "frame": {"start": 1161, "end": 1200}
+    },
+    {
+        "details": { "name": "", "color": "" },
+        "type": "transform",
+        "range": {"start": 1, "end": 600},
+        "color": {
+            "start": {"hue": 0, "saturation": 0, "value": 100},
+            "end": {"hue": 0, "saturation": 0, "value": 0}
+        },
+        "frame": {"start": 1169, "end": 1189}
+    },
+    {
+        "details": { "name": "", "color": "" },
+        "type": "transform",
+        "range": {"start": 601, "end": 1100},
+        "color": {
+            "start": {"hue": 0, "saturation": 0, "value": 100},
+            "end": {"hue": 0, "saturation": 0, "value": 0}
+        },
+        "frame": {"start": 1203, "end": 1223}
+    },
+    {
+        "details": { "name": "SSS-Arch 1", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1260, "end": 1268 }
+    },
+    {
+        "details": { "name": "SSS-Arch 2", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1274, "end": 1282 }
+    },
+    {
+        "details": { "name": "SSS-Arch 3", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1288, "end": 1296 }
+    },
+    {
+        "details": { "name": "SSS-Arch 4", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1302, "end": 1310 }
+    },
+    {
+        "details": { "name": "SSS-Arch 5", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1316, "end": 1324 }
+    },
+    {
+        "details": { "name": "SSS-Arch 6", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1330, "end": 1338 }
+    },
+    {
+        "details": { "name": "SSS-Arch 7", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1344, "end": 1352 }
+    },
+    {
+        "details": { "name": "SSS-Arch 8", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1358, "end": 1366 }
+    },
+    {
+        "details": { "name": "SSS-Arch 9", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1372, "end": 1380 }
+    },
+    {
+        "details": { "name": "SSS-Arch 10", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1386, "end": 1394 }
+    },
+    {
+        "details": { "name": "SSS-Arch 11", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1400, "end": 1408 }
+    },
+    {
+        "details": { "name": "SSS-Arch 12", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1414, "end": 1422 }
+    },
+    {
+        "details": { "name": "SSS-Arch 13", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1428, "end": 1436 }
+    },
+    {
+        "details": { "name": "SSS-Arch 14", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1442, "end": 1450 }
+    },
+    {
+        "details": { "name": "SSS-Arch 15", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1456, "end": 1464 }
+    },
+    {
+        "details": { "name": "SSS-Arch 16", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1470, "end": 1478 }
+    },
+    {
+        "details": { "name": "SSS-Arch 17", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1484, "end": 1492 }
+    },
+    {
+        "details": { "name": "SSS-Arch 18", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1498, "end": 1506 }
+    },
+    {
+        "details": { "name": "SSS-Arch 19", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1512, "end": 1520 }
+    },
+    {
+        "details": { "name": "SSS-Arch 20", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1526, "end": 1534 }
+    },
+    {
+        "details": { "name": "SSS-Arch 21", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1540, "end": 1548 }
+    },
+    {
+        "details": { "name": "SSS-Arch 22", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1554, "end": 1562 }
+    },
+    {
+        "details": { "name": "SSS-Arch 23", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1568, "end": 1576 }
+    },
+    {
+        "details": { "name": "SSS-Arch 24", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1582, "end": 1590 }
+    },
+    {
+        "details": { "name": "SSS-Arch 25", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1596, "end": 1604 }
+    },
+    {
+        "details": { "name": "SSS-Arch 26", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1610, "end": 1618 }
+    },
+    {
+        "details": { "name": "SSS-Arch 27", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1624, "end": 1632 }
+    },
+    {
+        "details": { "name": "SSS-Arch 28", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1638, "end": 1646 }
+    },
+    {
+        "details": { "name": "SSS-Arch 29", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1652, "end": 1660 }
+    },
+    {
+        "details": { "name": "SSS-Arch 30", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1666, "end": 1674 }
+    },
+    {
+        "details": { "name": "SSS-Arch 31", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1680, "end": 1688 }
+    },
+    {
+        "details": { "name": "SSS-Arch 32", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1694, "end": 1702 }
+    },
+    {
+        "details": { "name": "SSS-Arch 33", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1708, "end": 1716 }
+    },
+    {
+        "details": { "name": "SSS-Arch 34", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1722, "end": 1730 }
+    },
+    {
+        "details": { "name": "SSS-Arch 35", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1736, "end": 1744 }
+    },
+    {
+        "details": { "name": "SSS-Arch 36", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1750, "end": 1758 }
+    },
+    {
+        "details": { "name": "SSS-Arch 37", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1764, "end": 1772 }
+    },
+    {
+        "details": { "name": "SSS-Arch 38", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1778, "end": 1786 }
+    },
+    {
+        "details": { "name": "SSS-Arch 39", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1792, "end": 1800 }
+    },
+    {
+        "details": { "name": "SSS-Arch 40", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1806, "end": 1814 }
+    },
+    {
+        "details": { "name": "SSS-Arch 41", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1820, "end": 1828 }
+    },
+    {
+        "details": { "name": "SSS-Arch 42", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1834, "end": 1842 }
+    },
+    {
+        "details": { "name": "SSS-Arch 43", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1848, "end": 1856 }
+    },
+    {
+        "details": { "name": "SSS-Arch 44", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1862, "end": 1870 }
+    },
+    {
+        "details": { "name": "SSS-Arch 45", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1876, "end": 1884 }
+    },
+    {
+        "details": { "name": "SSS-Arch 46", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1890, "end": 1898 }
+    },
+    {
+        "details": { "name": "SSS-Arch 47", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1904, "end": 1912 }
+    },
+    {
+        "details": { "name": "SSS-Arch 48", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1918, "end": 1926 }
+    },
+    {
+        "details": { "name": "SSS-Arch 49", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1932, "end": 1940 }
+    },
+    {
+        "details": { "name": "SSS-Arch 50", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1946, "end": 1954 }
+    },
+    {
+        "details": { "name": "SSS-Arch 51", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1960, "end": 1968 }
+    },
+    {
+        "details": { "name": "SSS-Arch 52", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1974, "end": 1982 }
+    },
+    {
+        "details": { "name": "SSS-Arch 53", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 1988, "end": 1996 }
+    },
+    {
+        "details": { "name": "SSS-Arch 54", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 2002, "end": 2010 }
+    },
+    {
+        "details": { "name": "SSS-Arch 55", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 2016, "end": 2024 }
+    },
+    {
+        "details": { "name": "SSS-Arch 56", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 2030, "end": 2038 }
+    },
+    {
+        "details": { "name": "SSS-Arch 57", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 2044, "end": 2052 }
+    },
+    {
+        "details": { "name": "SSS-Arch 58", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 2058, "end": 2066 }
+    },
+    {
+        "details": { "name": "SSS-Arch 59", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 2072, "end": 2080 }
+    },
+    {
+        "details": { "name": "SSS-Arch 60", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 2086, "end": 2094 }
+    },
+    {
+        "details": { "name": "SSS-Arch 61", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 2100, "end": 2108 }
+    },
+    {
+        "details": { "name": "SSS-Arch 62", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 2114, "end": 2122 }
+    },
+    {
+        "details": { "name": "SSS-Arch 63", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 2128, "end": 2136 }
+    },
+    {
+        "details": { "name": "SSS-Arch 64", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 2142, "end": 2150 }
+    },
+    {
+        "details": { "name": "SSS-Arch 65", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 2156, "end": 2164 }
+    },
+    {
+        "details": { "name": "SSS-Arch 66", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 2170, "end": 2178 }
+    },
+    {
+        "details": { "name": "SSS-Arch 67", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 2184, "end": 2192 }
+    },
+    {
+        "details": { "name": "SSS-Arch 68", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 2198, "end": 2206 }
+    },
+    {
+        "details": { "name": "SSS-Arch 69", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 2212, "end": 2220 }
+    },
+    {
+        "details": { "name": "SSS-Arch 70", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 2226, "end": 2234 }
+    },
+    {
+        "details": { "name": "SSS-Arch 71", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 2240, "end": 2248 }
+    },
+    {
+        "details": { "name": "SSS-Arch 72", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 2254, "end": 2262 }
+    },
+    {
+        "details": { "name": "SSS-Arch 73", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 2268, "end": 2276 }
+    },
+    {
+        "details": { "name": "SSS-Arch 74", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 2282, "end": 2290 }
+    },
+    {
+        "details": { "name": "SSS-Arch 75", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 2296, "end": 2304 }
+    },
+    {
+        "details": { "name": "SSS-Arch 76", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 2310, "end": 2318 }
+    },
+    {
+        "details": { "name": "SSS-Arch 77", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 2324, "end": 2332 }
+    },
+    {
+        "details": { "name": "SSS-Arch 78", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 2338, "end": 2346 }
+    },
+    {
+        "details": { "name": "SSS-Arch 79", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": false,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 2352, "end": 2360 }
+    },
+    {
+        "details": { "name": "SSS-Arch 80", "color": "" },
+        "type": "trail",
+        "range": { "start": 1, "end": 600 },
+        "life": 3,
+        "decay": 100,
+        "reverse": true,
+        "color": { "hue": 266, "saturation": 100, "value": 100 },
+        "frame": { "start": 2366, "end": 2374 }
+    }
+]
