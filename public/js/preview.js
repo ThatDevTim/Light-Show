@@ -147,17 +147,17 @@ async function load() {
         let newPixel = document.createElement("div")
         newPixel.id = pixel["id"]
         newPixel.classList = "pixel"
-        newPixel.style.left = (pixel["x"] * .75) + "px"
-        newPixel.style.top = (pixel["y"] * .75) + "px"
+        newPixel.style.left = (pixel["x"] * 1) + "px"
+        newPixel.style.top = (pixel["y"] * 1) + "px"
         document.body.appendChild(newPixel)
     })
 
     endFrame = await (await fetch("/public/shows/halloween/info.json")).json()
     endFrame = endFrame["length"]
 
-    substation1 = await (await fetch("/public/shows/halloween/compiled/section1/compact.json")).json()
-    substation2 = await (await fetch("/public/shows/halloween/compiled/section2/compact.json")).json()
-    substation3 = await (await fetch("/public/shows/halloween/compiled/section3/compact.json")).json()
+    substation1 = await (await fetch("/public/shows/halloween/compiled/zone1/compact.json")).json()
+    substation2 = await (await fetch("/public/shows/halloween/compiled/zone2/compact.json")).json()
+    substation3 = await (await fetch("/public/shows/halloween/compiled/zone3/compact.json")).json()
 
     startTime = Date.now()
     loop()

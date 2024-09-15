@@ -845,15 +845,5 @@
         "reverse": false,
         "color": { "hue": 122, "saturation": 100, "value": 100 },
         "frame": { "start": 2366, "end": 2374 }
-    },
-    {
-        "details": { "name": "", "color": "" },
-        "type": "transform",
-        "range": {"start": 1, "end": 1100},
-        "color": {
-            "start": {"hue": 0, "saturation": 0, "value": 100},
-            "end": {"hue": 0, "saturation": 0, "value": 0}
-        },
-        "frame": {"start": 2373, "end": 2412}
     }
 ]

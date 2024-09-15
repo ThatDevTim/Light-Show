@@ -1,0 +1,32 @@
+[
+    {
+        "details": { "name": "", "color": "" },
+        "type": "transform",
+        "range": {"start": 1, "end": 965},
+        "color": {
+            "start": {"hue": 0, "saturation": 0, "value": 100},
+            "end": {"hue": 0, "saturation": 0, "value": 0}
+        },
+        "frame": {"start": 2373, "end": 2412}
+    },
+    {
+        "details": { "name": "", "color": "" },
+        "type": "transform",
+        "range": {"start": 1, "end": 236},
+        "color": {
+            "start": {"hue": 0, "saturation": 0, "value": 100},
+            "end": {"hue": 0, "saturation": 0, "value": 0}
+        },
+        "frame": {"start": 2427, "end": 2442}
+    },
+    {
+        "details": { "name": "", "color": "" },
+        "type": "transform",
+        "range": {"start": 610, "end": 965},
+        "color": {
+            "start": {"hue": 0, "saturation": 0, "value": 100},
+            "end": {"hue": 0, "saturation": 0, "value": 0}
+        },
+        "frame": {"start": 2454, "end": 2469}
+    } 
+]
