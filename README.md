@@ -13,15 +13,16 @@ Compiled frameData is distrobuted in chunks starting as soon as the `play` instr
 
 JSON format for how the show data should be written.
 
+## Raw
+
+<details><summary>View Types</summary>
+
+
 `range` is an abject consisting  of a `start` and `end` that are positive integers and represent the pixels the step will affect.
 
 Inside `color` objects, `hue` is a positive integer between `0` and `360`, `saturation` and `value` is an positive integer between `0` and `100`.
 
 If a step only takes place in one frame, the `frame` value will be a positive integer. If a step takes place over more than one frame, `frame` will be an object
-
-## Raw
-
-<details><summary>View Types</summary>
 
 **Set**
 ```
