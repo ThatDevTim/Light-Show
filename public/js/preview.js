@@ -30,8 +30,6 @@ let substation3
 let endFrame
 
 function loop() {
-    document.getElementById("audio").play()
-
     console.log(endFrame)
 
     let pixels = document.getElementsByClassName("pixel")
@@ -39,7 +37,8 @@ function loop() {
         if (!playing) return
 
         let now = Date.now()
-        let elapsed = now - startTime
+        let elapsed = Math.round(document.getElementById("audio").currentTime * 1000)
+        console.log(elapsed)
         let newFrame = Math.round(elapsed / (1000 / fps))
 
         if (newFrame == lastFrame) return
@@ -147,8 +146,8 @@ async function load() {
         let newPixel = document.createElement("div")
         newPixel.id = pixel["id"]
         newPixel.classList = "pixel"
-        newPixel.style.left = (pixel["x"] * 1) + "px"
-        newPixel.style.top = (pixel["y"] * 1) + "px"
+        newPixel.style.left = (pixel["x"] * .75) + "px"
+        newPixel.style.top = (pixel["y"] * .75) + "px"
         document.body.appendChild(newPixel)
     })
 

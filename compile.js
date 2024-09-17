@@ -68,7 +68,7 @@ function transform(instruction) {
         insertData(frame.start + index, compiledInstruction)
     }
 
-    console.log(`${chalk.gray("[~]")} Transformed pixels ${range.start} to ${range.end} to from (${color}) to (${color[1]}) at between frame ${frame[0]} and ${frame[1]}!`)
+    console.log(`${chalk.gray("[~]")} Transformed pixels ${range.start} to ${range.end} to from (${color.start.hue}, ${color.start.saturation}, ${color.start.value}) to (${color.end.hue}, ${color.end.saturation}, ${color.end.value}) at between frame ${frame.start} and ${frame.end}!`)
 }
 
 function segment(instruction) {
@@ -247,6 +247,7 @@ let filePath = __dirname + `/public/shows/${show}`
 let zones = fs.readdirSync(filePath + "/raw")
 
 zones.forEach((zone) => {
+    let startTime = Date.now()
     console.log(chalk.yellow(`[=] Compiling ${chalk.underline(zone)}`))
 
     frameData = {}
@@ -266,10 +267,46 @@ zones.forEach((zone) => {
         })
     })
 
+    let info = fs.readFileSync(filePath + "/info.json", "utf-8")
+    info = JSON.parse(info)
+
+    if (info.zones[zone] & false) {
+        console.log(chalk.yellow(`[=] Creating Master Frame Data for ${chalk.underline(zone)}...`))
+
+        let length = info.length
+        let pixelCount = info.zones[zone]
+        
+        let masterFrameData = {}
+
+        for (let pixel = 1; pixel <= pixelCount; pixel++) {
+            masterFrameData[pixel] = {}
+        }
+
+        Object.keys(frameData).forEach(frameNum => {
+            frame = frameData[frameNum]
+
+            frame.forEach((step) => {
+                if (step[0] == "range") {
+                    for (let pixel = step[1][0]; pixel <= step[1][1]; pixel++) {
+                       for (let changeFrame = frameNum; changeFrame <= length; changeFrame++) {
+                            masterFrameData[pixel][changeFrame] = step[2]
+                       } 
+                    }
+                }
+            })
+        })
+
+        masterFrameData = JSON.stringify(masterFrameData)
+
+        fs.mkdirSync(filePath + `/compiled/${zone}`, { recursive: true })
+        fs.writeFileSync(filePath + `/compiled/${zone}/master.json`, masterFrameData)
+
+        console.log(chalk.green(`[+] Done Creating Master Frame Data for ${chalk.underline(zone)}! (${(Date.now() - startTime) / 1000}s)`))
+    }
+
     frameData = JSON.stringify(frameData)
 
-    fs.mkdirSync(filePath + `/compiled/${zone}`, { recursive: true })
     fs.writeFileSync(filePath + `/compiled/${zone}/compact.json`, frameData)
 
-    console.log(`${chalk.green("[+]")} Done Compiling ${chalk.underline(zone)}`)
+    console.log(`${chalk.green("[+]")} Done Compiling ${chalk.underline(zone)}!`)
 })
